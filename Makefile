@@ -3,7 +3,6 @@ CC 				= gcc
 
 CFLAGS 			= -g -Wall -Wextra -Werror 
 
-
 NAME 			= cube
 
 BONUS_NAME		= cube_bonus
@@ -66,11 +65,15 @@ define Makebin
 	$(CC) $(CFLAGS) $(1) $(LIBS) -o $(2)
 endef
 
-#MAIN RULES
-all: $(MINILIBX_DIR) $(NAME)
-
+#DEPENDECIES RULES
 $(MINILIBX_DIR):
 	$(call MakeMinilibx,all)
+
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
+
+#MAIN RULES
+all: $(MINILIBX_DIR) $(OBJS_DIR) $(NAME)
 
 out/%.o: %.c | out
 	$(call Compile,$<,$@)
