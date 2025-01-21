@@ -18,7 +18,10 @@ OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 #INCLUDES
 INCLUDES = -I$(INC_DIR)
 
-all: $(NAME)
+all: $(OBJS_DIR) $(NAME)
+
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)

@@ -1,22 +1,22 @@
 #MAIN VARS
-CC 				= cc 
+CC 				= gcc 
 
 CFLAGS 			= -g -Wall -Wextra -Werror 
 
-MINILIBX_DIR 	= ./minilibx-linux
 
 NAME 			= cube
 
 BONUS_NAME		= cube_bonus
 
+MINILIBX_URL	= https://github.com/42Paris/minilibx-linux.git
+
 #DIRS
 OBJS_DIR		= ./out
-FUNC_DIR		= ./func
+MINILIBX_DIR 	= ./minilibx-linux
+MODULES_DIR		= ./modules
 
 #FILES NAME
 MAIN_FILE		= cube.c
-
-FUNC_FILES 		= 
 
 FUNC            = $(addprefix $(FUNC_DIR), $(FUNC_FILES))
 
@@ -51,7 +51,7 @@ endef
 
 define MakeMinilibx
 	if [ ! -d $(MINILIBX_DIR) ]; then \
-		git clone https://github.com/42Paris/minilibx-linux.git $(MINILIBX_DIR); \
+		git clone $(MINILIBX_URL) $(MINILIBX_DIR); \
 		cd $(MINILIBX_DIR) && ./configure; \
 		cd ../; \
 	elif [ -d $(MINILIBX_DIR) ] && [ "$(1)" != "fclean" ]; then \
@@ -67,7 +67,10 @@ define Makebin
 endef
 
 #MAIN RULES
-all: $(NAME)
+all: $(MINILIBX_DIR) $(NAME)
+
+$(MINILIBX_DIR):
+	$(call MakeMinilibx,all)
 
 out/%.o: %.c | out
 	$(call Compile,$<,$@)
