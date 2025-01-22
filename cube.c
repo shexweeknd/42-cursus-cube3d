@@ -23,8 +23,12 @@ int	main(void)
 	screen.mlx_win = mlx_new_window(screen.mlx, WIDTH, HEIGHT, "CUBE3D");
 	if (!screen.mlx_win)
 		return (write(1, "Error\n", 6), 0);
+	screen.p_x = WIDTH / 2;
+	screen.p_y = HEIGHT / 2;
+	screen.p_color = 0x00FF00;
 	cube_hook(&screen);
+	draw_player(&screen);
+	mlx_key_hook(screen.mlx_win, handle_keypress, &screen);
 	mlx_loop(screen.mlx);
-	printf("Here\n");
 	return (0);
 }
