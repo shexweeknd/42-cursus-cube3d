@@ -11,8 +11,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../mlx/mlx.h"
-#include "../inc/screen.h"
+#include "screen.h"
 
 void	free_screen(t_screen *screen)
 {

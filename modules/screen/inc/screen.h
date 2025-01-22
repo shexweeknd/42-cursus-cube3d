@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   screen.h                                           :+:      :+:    :+:   */
+/*   libscreen.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananarivo.mg>  #+#  +:+
 	+#+        */
@@ -11,8 +11,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCREEN_H
-# define SCREEN_H
+#ifndef LIBSCREEN_H
+# define LIBSCREEN_H
+
+# include "mlx.h"
 
 # include <stdio.h>
 # include <stdlib.h>
