@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   screen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hramaros <hramaros@student.42antananarivo.mg>  #+#  +:+      
+/*   By: hramaros <hramaros@student.42antananarivo.mg>  #+#  +:+
 	+#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025-01-22 07:09:18 by hramaros          #+#    #+#             */
@@ -11,7 +11,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "screen.h"
+#include "../../../mlx/mlx.h"
+#include "../inc/screen.h"
 
 void	free_screen(t_screen *screen)
 {

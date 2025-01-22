@@ -6,7 +6,7 @@ NC=\033[0m
 
 NAME = libscreen.a
 
-CC = gcc
+CC = cc
 
 CFLAGS = -g -Wall -Wextra -Werror
 
@@ -15,7 +15,7 @@ SRCS_DIR = ./src
 OBJS_DIR = ./out
 INC_DIR = ./inc
 
-MINILIBX_DIR = ../../minilibx-linux
+MINILIBX_DIR = ../../mlx
 
 #FILES
 SRCS = screen.c \
@@ -27,15 +27,20 @@ INCLUDES = -I$(MINILIBX_DIR) -I$(INC_DIR)
 
 all: $(MINILIBX_DIR) $(OBJS_DIR) | $(NAME)
 
+exec: all
+	@$(CC) $(CFLAGS) $(INCLUDES) main.c -L./ -lscreen -L$(MINILIBX_DIR) -lmlx -lX11 -lXext -lm -o screen
+	@echo "$(GREEN)screen compiled$(NC)"
+
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
 
 $(NAME): $(OBJS)
+	@cp $(MINILIBX_DIR)/libmlx.a $(NAME)
 	@ar rcs $(NAME) $(OBJS)
 	@echo "$(GREEN)$(NAME) compiled$(NC)"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(GREEN)$(NAME) obj compiled$(NC)"
 
 clean:

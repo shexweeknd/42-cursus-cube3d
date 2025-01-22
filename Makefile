@@ -5,7 +5,7 @@ YELLOW=\033[1;33m
 NC=\033[0m
 
 #MAIN VARS
-CC 				= gcc 
+CC 				= cc 
 
 CFLAGS 			= -g -Wall -Wextra -Werror 
 
@@ -15,7 +15,7 @@ MINILIBX_URL	= https://github.com/42Paris/minilibx-linux.git
 
 #DIRS
 OBJS_DIR		= ./out
-MINILIBX_DIR 	= ./minilibx-linux
+MINILIBX_DIR 	= ./mlx
 MODULES_DIR		= ./modules
 
 #MODULES_DIR
@@ -49,7 +49,7 @@ INCLUDES		= $(CUBE_INC) $(MINILIBX_INC) $(LIBFT_INC) $(SCREEN_INC)
 
 #MAKE FUNCTIONS
 define Compile
-	$(CC) $(CFLAGS) $(INCLUDES) -c $(1) -o $(2)
+	$(CC) $(CFLAGS) -c $(1) -o $(2)
 endef
 
 define MakeLibft
@@ -61,9 +61,7 @@ endef
 
 define MakeMinilibx
 	@if [ ! -d $(MINILIBX_DIR) ]; then \
-		git clone $(MINILIBX_URL) $(MINILIBX_DIR); \
-		cd $(MINILIBX_DIR); \
-		cd ../; \
+		git clone $(MINILIBX_URL) $(MINILIBX_DIR) \; \
 		echo "$(GREEN)minilibx-linux cloned$(NC)"; \
 	fi
 
