@@ -52,10 +52,12 @@ endef
 define MakeMinilibx
 	@if [ ! -d $(MINILIBX_DIR) ]; then \
 		git clone $(MINILIBX_URL) $(MINILIBX_DIR); \
+		cd $(MINILIBX_DIR) && ./configure; \
+		cd ../; \
 	fi
 
 	@if [ -d $(MINILIBX_DIR) ] && [ "$(1)" != "fclean" ]; then \
-		make $(1) -C $(MINILIBX_DIR) -s ; \
+		make $(1) -C $(MINILIBX_DIR) 2>&1 | grep "[info]" > /dev/null; \
 	fi
 endef
 
