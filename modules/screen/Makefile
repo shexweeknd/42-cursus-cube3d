@@ -4,7 +4,7 @@ GREEN=\033[1;32m
 YELLOW=\033[1;33m
 NC=\033[0m
 
-NAME = libft.a
+NAME = libscreen.a
 
 CC = gcc
 
@@ -15,20 +15,20 @@ SRCS_DIR = ./src
 OBJS_DIR = ./out
 INC_DIR = ./inc
 
+MINILIBX_DIR = ../../minilibx-linux
+
 #FILES
-SRCS = ft_strlen.c \
-		ft_putstr.c \
+SRCS = screen.c \
 
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 
 #INCLUDES
-INCLUDES = -I$(INC_DIR)
+INCLUDES = -I$(MINILIBX_DIR) -I$(INC_DIR)
 
-all: $(OBJS_DIR) $(NAME)
+all: $(MINILIBX_DIR) $(OBJS_DIR) | $(NAME)
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
-	@echo "$(GREEN)$(NAME) obj dir created$(NC)"
 
 $(NAME): $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
