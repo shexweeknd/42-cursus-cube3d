@@ -6,17 +6,45 @@
 /*   By: hrazafis <hrazafis@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:33:07 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/23 14:59:10 by hrazafis         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:04:34 by hrazafis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+#include <fcntl.h>
 #include <stdio.h>
 
-int	main(void)
+char	**parse_map(char *file)
+{
+	int		fd;
+	char	*line;
+	char	**map;
+	int		i;
+
+	fd = open(file, O_RDONLY);
+	map = NULL;
+	line = get_next_line(fd);
+	i = 0;
+	while (line)
+	{
+		i++;
+		line = get_next_line(fd);
+		free(line);
+	}
+	return (map);
+}
+
+int	main(int ac, char **av)
 {
 	t_screen	screen;
 
+	if (ac != 2)
+	{
+		printf("Error\n");
+		return (1);
+	}
+	parse_map(av[1]);
+	return (0);
 	data_init(&screen);
 	screen.p_x = WIDTH / 4;
 	screen.p_y = HEIGHT / 4;
