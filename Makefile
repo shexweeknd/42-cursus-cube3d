@@ -1,4 +1,5 @@
 #COLORS
+GRAY=\033[1;30m
 RED=\033[1;31m
 GREEN=\033[1;32m
 YELLOW=\033[1;33m
@@ -45,6 +46,16 @@ LIBSCREEN_INC	= -I$(LIBSCREEN_DIR)/inc/
 INCLUDES		= $(MINILIBX_INC) $(LIBFT_INC) $(LIBSCREEN_INC) $(CUBE_INC)
 
 #MAKE FUNCTIONS
+define Printprogress
+	@i=1; \
+    while [ $$i -le 100 ]; do \
+        printf "\r$(GRAY) $(3) de $(1) %d%% $(NC)" $$i; \
+        sleep 0.01; \
+        i=$$((i+1)); \
+    done; \
+    printf "\r$(2)⚬ $(3) de $(1) 100%% ✔$(NC)\n"
+endef
+
 define Compile
 	$(CC) $(CFLAGS) $(INCLUDES) -c $(1) -o $(2)
 endef
