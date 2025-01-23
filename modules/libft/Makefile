@@ -18,6 +18,7 @@ INC_DIR = ./inc
 #FILES
 SRCS = ft_strlen.c \
 		ft_putstr.c \
+		get_next_line.c \
 
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 

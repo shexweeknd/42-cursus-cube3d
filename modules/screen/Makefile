@@ -19,6 +19,7 @@ MINILIBX_DIR = ../minilibx-linux
 
 #FILES
 SRCS = screen.c \
+		screen_utils.c \
 
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 

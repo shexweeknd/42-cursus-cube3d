@@ -28,6 +28,10 @@
 # define KEY_RELEASE 3
 # define KEY_EXIT 17
 
+// SIZE
+# define PLAYER_SIZE 20
+# define MAP_SIZE 100
+
 typedef struct s_screen
 {
 	void	*mlx;
@@ -40,14 +44,18 @@ typedef struct s_screen
 	int		p_x;
 	int		p_y;
 	int		p_color;
+	int		map[4][4];
 }			t_screen;
 
 void		free_screen(t_screen *screen);
 int			handle_exit(t_screen *screen);
 int			handle_key(int key, t_screen *screen);
 void		cube_hook(t_screen *screen);
-void		draw_player(t_screen *screen);
+void		draw_square(t_screen *screen, int scale, int p_x, int p_y,
+				int color);
 int			handle_keypress(int keycode, t_screen *screen);
 void		my_mlx_pixel_put(t_screen *screen, int x, int y, int color);
+void		data_init(t_screen *screen);
+void		draw_map(t_screen *screen, int map[4][4]);
 
 #endif
