@@ -54,28 +54,29 @@ void	draw_player(t_screen *screen)
 	{
 		for (int j = 0; j < PIXEL_SIZE; j++)
 		{
-			mlx_pixel_put(screen->mlx, screen->mlx_win, screen->p_x + i,
-				screen->p_y + j, screen->p_color);
+			my_mlx_pixel_put(screen, screen->p_x + i, screen->p_y + j,
+				screen->p_color);
 		}
 	}
+	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
 }
 
 int	handle_keypress(int keycode, t_screen *screen)
 {
-	screen->p_color = 0x000000;
+	screen->p_color = 0x00000000;
 	draw_player(screen);
-
 	if (keycode == 13 || keycode == 119)
-		screen->p_y -= PIXEL_SIZE / 2;
+	{
+		mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
+		screen->p_y -= PIXEL_SIZE;
+	}
 	else if (keycode == 0 || keycode == 97)
-		screen->p_x -= PIXEL_SIZE / 2;
+		screen->p_x -= PIXEL_SIZE;
 	else if (keycode == 1 || keycode == 115)
-		screen->p_y += PIXEL_SIZE / 2;
+		screen->p_y += PIXEL_SIZE;
 	else if (keycode == 2 || keycode == 100)
-		screen->p_x += PIXEL_SIZE / 2;
-
-	screen->p_color = 0x00FF00;
+		screen->p_x += PIXEL_SIZE;
+	screen->p_color = 0x0000FF00;
 	draw_player(screen);
-
 	return (0);
 }
