@@ -3,11 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hramaros <hramaros@student.42antananarivo.mg>  #+#  +:+
-	+#+        */
+/*   By: hrazafis <hrazafis@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-01-23 10:28:15 by hramaros          #+#    #+#             */
-/*   Updated: 2025-01-23 10:28:15 by hramaros         ###   ########.fr       */
+/*   Created: 2025/01/23 14:31:35 by hrazafis          #+#    #+#             */
+/*   Updated: 2025/01/23 14:31:37 by hrazafis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

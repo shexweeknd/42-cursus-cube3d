@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
+/*   By: hrazafis <hrazafis@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/29 14:24:42 by hramaros          #+#    #+#             */
-/*   Updated: 2024/09/29 14:49:55 by hramaros         ###   ########.fr       */
+/*   Created: 2025/01/23 14:32:40 by hrazafis          #+#    #+#             */
+/*   Updated: 2025/01/23 14:32:42 by hrazafis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
