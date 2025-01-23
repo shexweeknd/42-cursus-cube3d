@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrazafis <hrazafis@student.42antananari    +#+  +:+       +#+        */
+/*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:31:28 by hrazafis          #+#    #+#             */
-/*   Updated: 2025/01/23 14:31:30 by hrazafis         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:48:39 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	draw_square(t_screen *screen, int size, int p_x, int p_y, int color)
 	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
 }
 
-void put_black_screen(t_screen *screen)
+void	put_black_screen(t_screen *screen)
 {
 	int	i;
 	int	j;

@@ -17,6 +17,7 @@ INC_DIR = ./inc
 
 #FILES
 SRCS = ft_strlen.c \
+		ft_bzero.c \
 		ft_putstr.c \
 		get_next_line.c \
 

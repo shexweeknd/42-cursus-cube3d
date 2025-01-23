@@ -14,6 +14,7 @@
 #ifndef LIBSCREEN_H
 # define LIBSCREEN_H
 
+# include "libft.h"
 # include "mlx.h"
 # include <stdio.h>
 # include <stdlib.h>

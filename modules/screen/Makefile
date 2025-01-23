@@ -16,6 +16,7 @@ OBJS_DIR = ./out
 INC_DIR = ./inc
 
 MINILIBX_DIR = ../minilibx-linux
+LIBFT_DIR = ../libft/inc/
 
 #FILES
 SRCS = screen.c \
@@ -24,7 +25,7 @@ SRCS = screen.c \
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 
 #INCLUDES
-INCLUDES = -I$(MINILIBX_DIR) -I$(INC_DIR)
+INCLUDES = -I$(MINILIBX_DIR) -I$(LIBFT_DIR) -I$(INC_DIR)
 
 all: $(MINILIBX_DIR) $(OBJS_DIR) | $(NAME)
 

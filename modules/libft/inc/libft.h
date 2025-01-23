@@ -13,5 +13,6 @@
 size_t	ft_strlen(const char *s);
 void	ft_putstr(const char *s);
 char	*get_next_line(int fd);
+void	ft_bzero(void *s, size_t n);
 
 #endif
