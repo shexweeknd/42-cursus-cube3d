@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
+/*   By: hrazafis <hrazafis@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:31:28 by hrazafis          #+#    #+#             */
-/*   Updated: 2025/01/23 14:48:39 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:00:13 by hrazafis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	draw_square(t_screen *screen, int size, int p_x, int p_y, int color)
 			my_mlx_pixel_put(screen, p_x + i, p_y + j++, color);
 		i++;
 	}
-	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
 }
 
 void	put_black_screen(t_screen *screen)
@@ -100,19 +99,15 @@ void	draw_map(t_screen *screen, int map[4][4])
 		}
 		i++;
 	}
-	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
 }
 
 int	handle_keypress(int keycode, t_screen *screen)
 {
-	put_black_screen(screen);
-	draw_map(screen, screen->map);
+	mlx_destroy_image(screen->mlx, screen->img);
+	screen->img = mlx_new_image(screen->mlx, WIDTH, HEIGHT);
+	draw_map(screen, screen->map);	
 	if (keycode == 13 || keycode == 119)
-	{
-		mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0,
-			0);
 		screen->p_y -= PLAYER_SIZE;
-	}
 	else if (keycode == 0 || keycode == 97)
 		screen->p_x -= PLAYER_SIZE;
 	else if (keycode == 1 || keycode == 115)
@@ -120,5 +115,6 @@ int	handle_keypress(int keycode, t_screen *screen)
 	else if (keycode == 2 || keycode == 100)
 		screen->p_x += PLAYER_SIZE;
 	draw_square(screen, PLAYER_SIZE, screen->p_x, screen->p_y, screen->p_color);
+	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
 	return (0);
 }
