@@ -19,6 +19,7 @@ void	free_screen(t_screen *screen)
 		return ;
 	if (screen->mlx_win)
 	{
+		mlx_destroy_image(screen->mlx, screen->img);
 		mlx_destroy_window(screen->mlx, screen->mlx_win);
 		mlx_destroy_display(screen->mlx);
 	}
@@ -67,7 +68,8 @@ int	handle_keypress(int keycode, t_screen *screen)
 	draw_player(screen);
 	if (keycode == 13 || keycode == 119)
 	{
-		mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
+		mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0,
+			0);
 		screen->p_y -= PIXEL_SIZE;
 	}
 	else if (keycode == 0 || keycode == 97)

@@ -152,6 +152,10 @@ run: all
 	@echo "$(ORANGE)🏁 EXECUTING ./$(NAME) 🏁$(NC)"
 	@./$(NAME)
 
+valrun: all
+	@echo "$(ORANGE)🏁 EXECUTING ./$(NAME) $(RED) WITH VALGRIND🏁$(NC)"
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)
+
 rerun: re run
 
 .PHONY: clean fclean all re run rerun

@@ -23,9 +23,6 @@ void	my_mlx_pixel_put(t_screen *screen, int x, int y, int color)
 }
 void	data_init(t_screen *screen)
 {
-	// screen->bits_per_pixel = 32;
-	// screen->line_length = 64;
-	// screen->endian = 0;
 	screen->mlx = mlx_init();
 	screen->mlx_win = mlx_new_window(screen->mlx, WIDTH, HEIGHT, "CUBE3D");
 	screen->img = mlx_new_image(screen->mlx, WIDTH, HEIGHT);
@@ -46,9 +43,6 @@ int	main(void)
 	cube_hook(&screen);
 	draw_player(&screen);
 	mlx_key_hook(screen.mlx_win, handle_keypress, &screen);
-	// screen.p_x = WIDTH / 4;
-	// screen.p_y = HEIGHT / 4;
-	// draw_player(&screen);
 	mlx_loop(screen.mlx);
 	return (0);
 }
