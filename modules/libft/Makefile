@@ -28,23 +28,18 @@ all: $(OBJS_DIR) $(NAME)
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
-	@echo "$(GREEN)$(NAME) obj dir created$(NC)"
 
 $(NAME): $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
-	@echo "$(GREEN)$(NAME) compiled$(NC)"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-	@echo "$(GREEN)$(NAME) obj compiled$(NC)"
 
 clean:
 	@rm -f $(OBJS)
-	@echo "$(YELLOW)$(NAME) obj removed$(NC)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(RED)$(NAME) is totally clean$(NC)"
 
 re: fclean all
 

@@ -1,8 +1,10 @@
 #COLORS
-GRAY=\033[1;30m
 RED=\033[1;31m
 GREEN=\033[1;32m
 YELLOW=\033[1;33m
+BLUE=\033[1;34m
+GRAY=\033[0;37m
+ORANGE=\033[0;33m
 NC=\033[0m
 
 #DIRS
@@ -46,18 +48,19 @@ LIBSCREEN_INC	= -I$(LIBSCREEN_DIR)/inc/
 INCLUDES		= $(MINILIBX_INC) $(LIBFT_INC) $(LIBSCREEN_INC) $(CUBE_INC)
 
 #MAKE FUNCTIONS
+# $(call Printprogress,OPERATION,LIBRARY,COLOR)
 define Printprogress
-	@i=1; \
-    while [ $$i -le 100 ]; do \
-        printf "\r$(GRAY) $(3) de $(1) %d%% $(NC)" $$i; \
-        sleep 0.01; \
-        i=$$((i+1)); \
+	i=1; while [ $$i -le 100 ]; do \
+        printf "\r$(GRAY) $(1) de $(2) %d%% $(NC)" $$i; \
+        sleep 0.00009; \
+       	i=$$((i + 1)); \
     done; \
-    printf "\r$(2)⚬ $(3) de $(1) 100%% ✔$(NC)\n"
+    printf "\r$(3)⚬ $(1) de $(2) 100%% ✔$(NC)\n"
 endef
 
 define Compile
-	$(CC) $(CFLAGS) $(INCLUDES) -c $(1) -o $(2)
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $(1) -o $(2)
+	@echo "	↳ $(2) compiled"
 endef
 
 define MakeMinilibx
@@ -70,24 +73,38 @@ define MakeMinilibx
 	@if [ -d $(MINILIBX_DIR) ] && [ "$(1)" != "fclean" ]; then \
 		make $(1) -C $(MINILIBX_DIR) 2>&1 | grep "[info]" > /dev/null; \
 	fi
+
+	@if [ "$(1)" = "all" ]; then \
+		$(call Printprogress,Compilation,$(MINILIBX_DIR),$(GREEN)); \
+	elif [ "$(1)" = "clean" ]; then \
+		$(call Printprogress,Cleaning,$(MINILIBX_DIR),$(YELLOW)); \
+	fi
 endef
 
 define MakeModule
 	@if [ -d $(1) ]; then \
 		make $(2) -C $(1) -s; \
 	fi
+
+	@if [ "$(2)" = "all" ]; then \
+		$(call Printprogress,Compilation,$(1),$(GREEN)); \
+	elif [ "$(2)" = "clean" ]; then \
+		$(call Printprogress,Cleaning,$(1),$(YELLOW)); \
+	elif [ "$(2)" = "fclean" ]; then \
+		$(call Printprogress,Total cleaning,$(1),$(RED)); \
+	fi
 endef
 
 define CombineLibs
-	@echo "$(YELLOW)Combining libraries into $(OUT_LIB)...$(NC)"
+	@echo "$(YELLOW)⚬ Combining libraries into $(OUT_LIB)...$(NC)"
 	@for lib in $(ARCHIVES); do \
-		echo "	Extracting $$lib..."; \
+		echo "	↳ Extracting $$lib..."; \
 		ar x $$lib --output=$(OBJS_DIR); \
 	done
 	@cp $(MINILIBX_DIR)/libmlx.a $(OUT_LIB)
 	@ar rcs $(OUT_LIB) $(OBJS_DIR)/*.o
 	@ranlib $(OUT_LIB)
-	@echo "$(YELLOW)$(OUT_LIB) module packed successfully.$(NC)"
+	@echo "$(YELLOW)⚬ $(OUT_LIB) module packed successfully ✔$(NC)"
 endef
 
 define Makebin
@@ -96,8 +113,8 @@ define Makebin
 	$(call MakeModule,$(LIBSCREEN_DIR),all)
 
 	$(call CombineLibs)
-	@echo "$(GREEN)Compiling exec $(2)...$(NC)"
-	$(CC) $(CFLAGS) $(1) -L./$(MODULES_DIR) -lmodules $(X11_LIB) -o $(2)
+	@$(CC) $(CFLAGS) $(1) -L./$(MODULES_DIR) -lmodules $(X11_LIB) -o $(2)
+	@echo "$(GREEN)THE EXECUTABLE: $(2) is ready $(NC)"
 endef
 
 #RULES
@@ -114,6 +131,7 @@ $(NAME) : $(MAIN_OBJ)
 	$(call Makebin,$^,$@)
 
 $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
+	@echo "$(BLUE)COMPILING OBJS FILES: $(NC)"
 	$(call Compile,$<,$@)
 
 clean:
@@ -130,4 +148,10 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean fclean all re
+run: all
+	@echo "$(ORANGE)🏁 EXECUTING ./$(NAME) 🏁$(NC)"
+	@./$(NAME)
+
+rerun: re run
+
+.PHONY: clean fclean all re run rerun

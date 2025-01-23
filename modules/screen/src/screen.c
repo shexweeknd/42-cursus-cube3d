@@ -30,7 +30,7 @@ int	handle_exit(t_screen *screen)
 {
 	if (screen)
 		free_screen(screen);
-	exit(1);
+	exit(0);
 	return (0);
 }
 
