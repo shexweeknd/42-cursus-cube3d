@@ -20,6 +20,8 @@ ERRORS_DIR = ../errors/inc/
 
 #FILES
 SRCS = maps.c \
+		map_utils.c \
+		map_middleware.c \
 
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 

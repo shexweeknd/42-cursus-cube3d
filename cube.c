@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:33:07 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/27 11:44:27 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:14:54 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
 int	main(int ac, char **av)
 {
 	t_screen	screen;
-	char		**map;
+	t_map		*map;
 
 	verify_args(ac, av);
 	if (get_error())
 		return (print_error(), 1);
 	map = parse_map(av[1]);
-	if (!map || get_error())
-		return (print_error(), 1);
+	if (!map || !map->grid || get_error())
+		return (print_error(), free(map), 1);
 	printf("\033[0;32mMap parsed successully\033[0m\n");
-	return (print_map(map), free_map(map), 0);
+	return (print_grid(map->grid), free_grid(map->grid), free(map), 0);
 	data_init(&screen);
 	screen.p_x = WIDTH / 4;
 	screen.p_y = HEIGHT / 4;

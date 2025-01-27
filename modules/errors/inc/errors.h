@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 09:57:19 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/27 11:18:05 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:04:26 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ enum	e_error
 {
 	err_args_nbr = 1,
 	err_file_extension,
-	err_map_open,
+	err_file_open,
 	err_file_empty,
 	err_malloc,
-	err_map_format,
+	err_grid_format,
 };
 
 int		get_error(void);
