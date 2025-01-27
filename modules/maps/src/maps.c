@@ -50,12 +50,86 @@ char	**retrieve_grid(char *file, size_t line_len)
 	return (close(fd), result);
 }
 
+int	get_player_pos(char **grid, char axis)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (grid[i])
+	{
+		j = 0;
+		while (grid[i][j])
+		{
+			if (grid[i][j] == 'N' || grid[i][j] == 'S' || grid[i][j] == 'E'
+				|| grid[i][j] == 'W')
+			{
+				if (axis == 'x')
+					return (j);
+				else if (axis == 'y')
+					return (i);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (-1);
+}
+
+typedef struct s_pos
+{
+	size_t	x;
+	size_t	y;
+}			t_pos;
+
+void	flood_canva(char **grid, size_t line_len, t_pos curr)
+{
+	if (curr.x <= 0 || curr.y <= 0 || curr.y >= line_len - 1
+		|| grid[curr.y][curr.x] == '\n' || grid[curr.y][curr.x] == '\0'
+		|| grid[curr.y][curr.x] == '1' || grid[curr.y][curr.x] == 'F')
+		return ;
+	if (grid[curr.y][curr.x] == ' ')
+	{
+		set_error(err_grid_format);
+		return ;
+	}
+	grid[curr.y][curr.x] = 'F';
+	if (get_error())
+		return ;
+	flood_canva(grid, line_len, (t_pos){curr.x - 1, curr.y});
+	flood_canva(grid, line_len, (t_pos){curr.x + 1, curr.y});
+	flood_canva(grid, line_len, (t_pos){curr.x, curr.y - 1});
+	flood_canva(grid, line_len, (t_pos){curr.x, curr.y + 1});
+}
+
+void	fill_canva(t_map *map, size_t line_len)
+{
+	char	**copy;
+	size_t	i;
+
+	copy = malloc(sizeof(char *) * (line_len + 1));
+	if (!copy)
+		return (set_error(err_malloc));
+	i = 0;
+	while (i < line_len)
+	{
+		copy[i] = ft_strdup(map->grid[i]);
+		i++;
+	}
+	copy[i] = NULL;
+	flood_canva(copy, line_len, (t_pos){map->p_x, map->p_y});
+	printf("The copied map is: \n");
+	print_grid(copy);
+	free_grid(copy);
+	return ;
+}
+
 // TODO
 t_map	*parse_map(char *file)
 {
+	size_t	line_len;
 	t_map	*result;
 	char	**grid_tmp;
-	size_t	line_len;
 
 	result = NULL;
 	line_len = count_grid_line(file);
@@ -70,5 +144,10 @@ t_map	*parse_map(char *file)
 	if (!result)
 		return (set_error(err_malloc), free_grid(grid_tmp), NULL);
 	result->grid = grid_tmp;
+	result->p_x = get_player_pos(grid_tmp, 'x');
+	result->p_y = get_player_pos(grid_tmp, 'y');
+	fill_canva(result, line_len);
+	if (get_error())
+		return (free_grid(grid_tmp), free(result), NULL);
 	return (result);
 }

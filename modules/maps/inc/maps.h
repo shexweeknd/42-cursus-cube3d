@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:17:37 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/27 14:10:47 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:44:40 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 typedef struct s_map
 {
 	char	**grid;
-	int		x;
-	int		y;
+	int		p_x;
+	int		p_y;
 }			t_map;
 
 t_map		*parse_map(char *file);
