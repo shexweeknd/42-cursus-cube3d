@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:36:19 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/27 10:36:28 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:42:22 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	verify_extension(char *file, char *ext)
 void	verify_args(int ac, char **av)
 {
 	if (ac != 2)
-		set_error(args_number);
+		set_error(err_args_nbr);
 	else if (!verify_extension(av[1], ".cub"))
-		set_error(cube_extension);
+		set_error(err_file_extension);
 }

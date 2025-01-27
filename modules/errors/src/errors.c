@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 09:56:50 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/27 10:10:09 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:18:25 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,14 @@ void	print_error(void)
 	int	error;
 
 	error = get_error();
-	if (error == args_number)
-		printf("Error: Wrong number of Arguments\n");
-	else if (error == cube_extension)
-		printf("Error: Wrong file extension\n");
+	if (error == err_args_nbr)
+		printf("\033[0;31mError: Wrong number of arguments\033[0m\n");
+	else if (error == err_file_extension)
+		printf("\033[0;31mError: Wrong file extension\033[0m\n");
+	else if (error == err_map_open)
+		printf("\033[0;31mError: Could not open map file\033[0m\n");
+	else if (error == err_file_empty)
+		printf("\033[0;31mError: Empty map file\033[0m\n");
+	else if (error == err_malloc)
+		printf("\033[0;31mError: Memory allocation failed\033[0m\n");
 }

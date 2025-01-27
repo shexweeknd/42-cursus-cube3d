@@ -16,6 +16,7 @@ OBJS_DIR = ./out
 INC_DIR = ./inc
 
 LIBFT_DIR = ../libft/inc/
+ERRORS_DIR = ../errors/inc/
 
 #FILES
 SRCS = maps.c \
@@ -23,7 +24,7 @@ SRCS = maps.c \
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 
 #INCLUDES
-INCLUDES = -I$(LIBFT_DIR) -I$(INC_DIR)
+INCLUDES = -I$(ERRORS_DIR) -I$(LIBFT_DIR) -I$(INC_DIR)
 
 all: $(OBJS_DIR) | $(NAME)
 
