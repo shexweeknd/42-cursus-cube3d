@@ -15,5 +15,7 @@ void	ft_putstr(const char *s);
 char	*get_next_line(int fd);
 void	ft_bzero(void *s, size_t n);
 int		ft_atoi(const char *str);
+char	*ft_strrchr(const char *str, int c);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif

@@ -4,7 +4,7 @@ GREEN=\033[1;32m
 YELLOW=\033[1;33m
 NC=\033[0m
 
-NAME = libft.a
+NAME = libmaps.a
 
 CC = gcc
 
@@ -15,21 +15,17 @@ SRCS_DIR = ./src
 OBJS_DIR = ./out
 INC_DIR = ./inc
 
+LIBFT_DIR = ../libft/inc/
+
 #FILES
-SRCS = ft_strlen.c \
-		ft_bzero.c \
-		ft_putstr.c \
-		ft_atoi.c \
-		ft_strrchr.c \
-		ft_strncmp.c \
-		get_next_line.c \
+SRCS = maps.c \
 
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 
 #INCLUDES
-INCLUDES = -I$(INC_DIR)
+INCLUDES = -I$(LIBFT_DIR) -I$(INC_DIR)
 
-all: $(OBJS_DIR) $(NAME)
+all: $(OBJS_DIR) | $(NAME)
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)

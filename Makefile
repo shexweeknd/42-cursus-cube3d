@@ -15,9 +15,13 @@ OBJS_DIR		= ./out
 LIBFT_DIR		= $(MODULES_DIR)/libft
 MINILIBX_DIR 	= $(MODULES_DIR)/minilibx-linux
 LIBSCREEN_DIR	= $(MODULES_DIR)/screen
+LIBERRORS_DIR	= $(MODULES_DIR)/errors
+LIBMAPS_DIR		= $(MODULES_DIR)/maps
 
 ARCHIVES 		= $(LIBFT_DIR)/libft.a \
 					$(LIBSCREEN_DIR)/libscreen.a \
+					$(LIBERRORS_DIR)/liberrors.a \
+					$(LIBMAPS_DIR)/libmaps.a \
 
 OUT_LIB     	= $(MODULES_DIR)/libmodules.a
 
@@ -44,8 +48,10 @@ CUBE_INC		= -I./
 MINILIBX_INC	= -I$(MINILIBX_DIR)/
 LIBFT_INC		= -I$(LIBFT_DIR)/inc/
 LIBSCREEN_INC	= -I$(LIBSCREEN_DIR)/inc/
+LIBERRORS_INC	= -I$(LIBERRORS_DIR)/inc/
+LIBMAPS_INC		= -I$(LIBMAPS_DIR)/inc/
 
-INCLUDES		= $(MINILIBX_INC) $(LIBFT_INC) $(LIBSCREEN_INC) $(CUBE_INC)
+INCLUDES		= $(MINILIBX_INC) $(LIBFT_INC) $(LIBSCREEN_INC) $(LIBERRORS_INC) $(LIBMAPS_INC) $(CUBE_INC)
 
 #MAKE FUNCTIONS
 # $(call Printprogress,OPERATION,LIBRARY,COLOR)
@@ -111,6 +117,8 @@ define Makebin
 	$(call MakeMinilibx,all)
 	$(call MakeModule,$(LIBFT_DIR),all)
 	$(call MakeModule,$(LIBSCREEN_DIR),all)
+	$(call MakeModule,$(LIBERRORS_DIR),all)
+	$(call MakeModule,$(LIBMAPS_DIR),all)
 
 	$(call CombineLibs)
 	@$(CC) $(CFLAGS) $(1) -L./$(MODULES_DIR) -lmodules $(X11_LIB) -o $(2)
@@ -138,12 +146,16 @@ clean:
 	$(call MakeMinilibx,clean)
 	$(call MakeModule,$(LIBFT_DIR),clean)
 	$(call MakeModule,$(LIBSCREEN_DIR),clean)
+	$(call MakeModule,$(LIBERRORS_DIR),clean)
+	$(call MakeModule,$(LIBMAPS_DIR),clean)
 	@rm -rf $(OBJS_DIR)/*.o
 
 fclean: clean
 	$(call MakeMinilibx,fclean)
 	$(call MakeModule,$(LIBFT_DIR),fclean)
 	$(call MakeModule,$(LIBSCREEN_DIR),fclean)
+	$(call MakeModule,$(LIBERRORS_DIR),fclean)
+	$(call MakeModule,$(LIBMAPS_DIR),fclean)
 	@rm -rf $(NAME) $(OUT_LIB)
 
 re: fclean all

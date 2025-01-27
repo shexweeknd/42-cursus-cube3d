@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrazafis <hrazafis@student.42antananari    +#+  +:+       +#+        */
+/*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:33:07 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/23 16:04:34 by hrazafis         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:39:51 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,13 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-char	**parse_map(char *file)
-{
-	int		fd;
-	char	*line;
-	char	**map;
-	int		i;
-
-	fd = open(file, O_RDONLY);
-	map = NULL;
-	line = get_next_line(fd);
-	i = 0;
-	while (line)
-	{
-		i++;
-		line = get_next_line(fd);
-		free(line);
-	}
-	return (map);
-}
-
 int	main(int ac, char **av)
 {
 	t_screen	screen;
 
-	if (ac != 2)
-	{
-		printf("Error\n");
-		return (1);
-	}
+	verify_args(ac, av);
+	if (get_error())
+		return (print_error(), 1);
 	parse_map(av[1]);
 	return (0);
 	data_init(&screen);
