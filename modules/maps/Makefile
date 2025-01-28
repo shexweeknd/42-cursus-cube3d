@@ -19,9 +19,13 @@ LIBFT_DIR = ../libft/inc/
 ERRORS_DIR = ../errors/inc/
 
 #FILES
-SRCS = maps.c \
+SRCS = map_parser.c \
+		map_squarify.c \
 		map_utils.c \
-		map_middleware.c \
+		map_hooks.c \
+		map_flooder.c \
+		map_getters.c \
+		map_validator.c \
 
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 

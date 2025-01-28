@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 09:56:50 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/27 14:04:35 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:42:35 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,6 @@ void	print_error(void)
 		printf("\033[0;31mError: Memory allocation failed\033[0m\n");
 	else if (error == err_grid_format)
 		printf("\033[0;31mError: Invalid map format\033[0m\n");
+	else if (error == err_hook_instruction)
+		printf("\033[0;31mError: Invalid hook instruction\033[0m\n");
 }

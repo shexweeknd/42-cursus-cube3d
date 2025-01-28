@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grid_utils.c                                        :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:11:27 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/27 14:06:04 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:46:15 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,6 @@ void	free_grid(char **grid)
 		i++;
 	}
 	free(grid);
-}
-
-char	*get_first_grid_line(int fd)
-{
-	char	*line;
-	int		i;
-
-	line = get_next_line(fd);
-	while (line)
-	{
-		i = 0;
-		while (line[i] == ' ')
-			i++;
-		if (line[i] == '1')
-			break ;
-		free(line);
-		line = get_next_line(fd);
-	}
-	return (line);
 }
 
 size_t	count_grid_line(char *file)

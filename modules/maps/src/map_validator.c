@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   map_validator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/27 09:57:19 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/28 12:42:09 by hramaros         ###   ########.fr       */
+/*   Created: 2025/01/28 12:51:09 by hramaros          #+#    #+#             */
+/*   Updated: 2025/01/28 12:51:20 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
+#include "maps.h"
 
-# include "libft.h"
-# include <stdio.h>
-
-enum	e_error
+int	validate_grid(char **grid, size_t line_len)
 {
-	err_args_nbr = 1,
-	err_file_extension,
-	err_file_open,
-	err_file_empty,
-	err_malloc,
-	err_grid_format,
-	err_hook_instruction,
-};
-
-int		get_error(void);
-void	set_error(int new_error);
-void	print_error(void);
-
-// ARGUMENTS ERRORS HANDLING
-void	verify_args(int ac, char **av);
-
-#endif
+	if (is_newline(grid))
+		return (0);
+	if (!is_always_one(grid[0]) || !is_always_one(grid[line_len - 1]))
+		return (0);
+	if (!is_closed(grid, line_len))
+		return (0);
+	if (is_forbidden_char(grid))
+		return (0);
+	return (1);
+}

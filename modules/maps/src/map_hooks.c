@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grid_middleware.c                                   :+:      :+:    :+:   */
+/*   map_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:56:36 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/27 13:56:55 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:50:44 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,31 +38,31 @@ int	is_newline(char **grid)
 	return (0);
 }
 
-int	is_closed_at_left(char *line)
+static int	_is_closed_at(char *line, char c)
 {
-	int	j;
-
-	if (!line)
-		return (0);
-	j = 0;
-	while (line && line[j] != '\0' && line[j] == ' ')
-		j++;
-	return ((line[j] == '1'));
-}
-
-int	is_closed_at_right(char *line)
-{
+	int		j;
 	size_t	size;
 
 	if (!line)
 		return (0);
-	size = ft_strlen(line);
-	while (line && (line[size] == ' '
-			|| line[size] == '\n' || line[size] == '\0'))
-		size--;
-	if (line[size] != '1')
-		return (0);
-	return (1);
+	if (c == 'l')
+	{
+		j = 0;
+		while (line && line[j] != '\0' && line[j] == ' ')
+			j++;
+		return ((line[j] == '1'));
+	}
+	else if (c == 'r')
+	{
+		size = ft_strlen(line);
+		while (line && (line[size] == ' ' || line[size] == '\n'
+				|| line[size] == '\0'))
+			size--;
+		if (line[size] != '1')
+			return (0);
+		return (1);
+	}
+	return (set_error(err_hook_instruction), 0);
 }
 
 int	is_closed(char **grid, size_t line_len)
@@ -72,7 +72,7 @@ int	is_closed(char **grid, size_t line_len)
 	i = 1;
 	while (i <= line_len - 2)
 	{
-		if (!is_closed_at_left(grid[i]) || !is_closed_at_right(grid[i]))
+		if (!_is_closed_at(grid[i], 'l') || !_is_closed_at(grid[i], 'r'))
 			return (0);
 		i++;
 	}
