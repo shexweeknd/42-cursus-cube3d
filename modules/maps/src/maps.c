@@ -147,6 +147,8 @@ char	**squarify(char **grid, size_t line_len)
 	char	**result;
 	size_t	i;
 	size_t	max_len;
+	char	*padding;
+	char	*tmp;
 
 	if (!grid)
 		return (NULL);
@@ -159,19 +161,23 @@ char	**squarify(char **grid, size_t line_len)
 	i = 0;
 	while (grid[i])
 	{
+		padding = NULL;
+		tmp = NULL;
 		if (ft_strlen(grid[i]) < max_len)
 		{
-			grid[i][ft_strlen(grid[i]) - 1] = '\0';
-			result[i] = ft_strjoin(grid[i], ft_strnew(max_len
-						- ft_strlen(grid[i]), ' '));
+			padding = ft_strnew(max_len - ft_strlen(grid[i]) + 1, ' ');
+			tmp = ft_strndup(grid[i], ft_strlen(grid[i]) - 1);
+			result[i] = ft_strjoin(tmp, padding);
 			result[i][max_len - 1] = '\n';
+			free(padding);
+			free(tmp);
 		}
 		else
 			result[i] = ft_strdup(grid[i]);
 		i++;
 	}
-	result[i - 1][max_len - 1] = '\0';
-	result[i] = NULL;
+	result[line_len - 1][max_len - 1] = '\0';
+	result[line_len] = NULL;
 	return (free_grid(grid), result);
 }
 

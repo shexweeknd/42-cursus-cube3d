@@ -42,8 +42,10 @@ int	is_closed_at_left(char *line)
 {
 	int	j;
 
+	if (!line)
+		return (0);
 	j = 0;
-	while (line[j] == ' ')
+	while (line && line[j] != '\0' && line[j] == ' ')
 		j++;
 	return ((line[j] == '1'));
 }
@@ -52,8 +54,11 @@ int	is_closed_at_right(char *line)
 {
 	size_t	size;
 
+	if (!line)
+		return (0);
 	size = ft_strlen(line);
-	while (line[size] == ' ' || line[size] == '\n' || line[size] == '\0')
+	while (line && (line[size] == ' '
+			|| line[size] == '\n' || line[size] == '\0'))
 		size--;
 	if (line[size] != '1')
 		return (0);
