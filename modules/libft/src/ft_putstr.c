@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrazafis <hrazafis@student.42antananari    +#+  +:+       +#+        */
+/*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:31:51 by hrazafis          #+#    #+#             */
-/*   Updated: 2025/01/23 14:31:53 by hrazafis         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:02:51 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putstr(const char *s)
+void	ft_putstr(const char *s)
 {
-    while (*s)
-        write(1, s++, 1);
+	while (*s)
+		write(1, s++, 1);
 }

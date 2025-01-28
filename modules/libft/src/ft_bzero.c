@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:35:00 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/23 14:35:02 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:02:59 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (n--)
