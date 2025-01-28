@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrazafis <hrazafis@student.42antananari    +#+  +:+       +#+        */
+/*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:31:28 by hrazafis          #+#    #+#             */
-/*   Updated: 2025/01/23 15:00:13 by hrazafis         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:08:05 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	handle_keypress(int keycode, t_screen *screen)
 {
 	mlx_destroy_image(screen->mlx, screen->img);
 	screen->img = mlx_new_image(screen->mlx, WIDTH, HEIGHT);
-	draw_map(screen, screen->map);	
+	draw_map(screen, screen->map);
 	if (keycode == 13 || keycode == 119)
 		screen->p_y -= PLAYER_SIZE;
 	else if (keycode == 0 || keycode == 97)

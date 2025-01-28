@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libscreen.h                                         :+:      :+:    :+:   */
+/*   screen.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hramaros <hramaros@student.42antananarivo.mg>  #+#  +:+
-	+#+        */
+/*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-01-22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025-01-22 07:06:13 by hramaros         ###   ########.fr       */
+/*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
+/*   Updated: 2025/01/28 13:06:30 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBSCREEN_H
-# define LIBSCREEN_H
+#ifndef SCREEN_H
+# define SCREEN_H
 
 # include "libft.h"
 # include "mlx.h"

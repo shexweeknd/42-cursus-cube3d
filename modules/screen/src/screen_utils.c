@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrazafis <hrazafis@student.42antananari    +#+  +:+       +#+        */
+/*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:31:35 by hrazafis          #+#    #+#             */
-/*   Updated: 2025/01/23 14:31:37 by hrazafis         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:07:29 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ void	my_mlx_pixel_put(t_screen *screen, int x, int y, int color)
 
 void	data_init(t_screen *screen)
 {
-	int i;
-	int j;
-
-	int map[4][4] = {{1, 1, 1, 1}, {1, 0, 0, 1}, {1, 0, 0, 1}, {1, 1, 1, 1}};
+	int	i;
+	int	j;
+	int	map[4][4] = {{1, 1, 1, 1}, {1, 0, 0, 1}, {1, 0, 0, 1}, {1, 1, 1, 1}};
 
 	screen->mlx = mlx_init();
 	screen->mlx_win = mlx_new_window(screen->mlx, WIDTH, HEIGHT, "CUBE3D");
