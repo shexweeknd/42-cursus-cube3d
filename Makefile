@@ -7,6 +7,8 @@ GRAY=\033[0;37m
 ORANGE=\033[0;33m
 NC=\033[0m
 
+SILENT = 
+
 #DIRS
 MODULES_DIR		= ./modules
 OBJS_DIR		= ./out
@@ -171,5 +173,18 @@ valrun: all
 	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(MAP)
 
 rerun: re run
+
+# GIT
+github:
+	@$(call Printprogress,Adding github remote,Cube3D,$(YELLOW))
+	-@git remote add origin https://github.com/shexweeknd/42-cursus-cube3d.git
+	@$(call Printprogress,Pushing to github remote,Cube3D,$(GREEN))
+	@git push --set-upstream origin
+
+vogsphere:
+	@$(call Printprogress,Adding vogsphere remote,Cube3D,$(YELLOW))
+	-@git remote add vogsphere git@vogsphere.42antananarivo.mg:vogsphere/intra-uuid-0d67723d-799d-49a4-b427-4fdde4d58fca-6261471-hramaros
+	@$(call Printprogress,Pushing to vogsphere remote,Cube3D,$(GREEN))
+	@git push --set-upstream vogsphere
 
 .PHONY: clean fclean all re run rerun
