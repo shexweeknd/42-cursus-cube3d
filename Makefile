@@ -32,6 +32,8 @@ CFLAGS 			= -g -Wall -Wextra -Werror
 
 NAME 			= cube
 
+MAP 			=
+
 MINILIBX_URL	= https://github.com/42Paris/minilibx-linux.git
 
 #FILES NAME
@@ -166,7 +168,7 @@ run: all
 
 valrun: all
 	@echo "$(ORANGE)🏁 EXECUTING ./$(NAME) $(RED) WITH VALGRIND🏁$(NC)"
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(MAP)
 
 rerun: re run
 
