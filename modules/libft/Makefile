@@ -23,6 +23,8 @@ SRCS = ft_strlen.c \
 		ft_strrchr.c \
 		ft_strncmp.c \
 		ft_strdup.c \
+		ft_strjoin.c \
+		ft_strnew.c \
 		get_next_line.c \
 
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)

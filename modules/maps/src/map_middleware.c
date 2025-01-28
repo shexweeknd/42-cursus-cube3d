@@ -38,18 +38,36 @@ int	is_newline(char **grid)
 	return (0);
 }
 
+int	is_closed_at_left(char *line)
+{
+	int	j;
+
+	j = 0;
+	while (line[j] == ' ')
+		j++;
+	return ((line[j] == '1'));
+}
+
+int	is_closed_at_right(char *line)
+{
+	size_t	size;
+
+	size = ft_strlen(line);
+	while (line[size] == ' ' || line[size] == '\n' || line[size] == '\0')
+		size--;
+	if (line[size] != '1')
+		return (0);
+	return (1);
+}
+
 int	is_closed(char **grid, size_t line_len)
 {
 	size_t	i;
-	int		j;
 
 	i = 1;
 	while (i <= line_len - 2)
 	{
-		j = 0;
-		while (grid[i][j] == ' ')
-			j++;
-		if ((grid[i][j] != '1') || (grid[i][ft_strlen(grid[i]) - 2] != '1'))
+		if (!is_closed_at_left(grid[i]) || !is_closed_at_right(grid[i]))
 			return (0);
 		i++;
 	}

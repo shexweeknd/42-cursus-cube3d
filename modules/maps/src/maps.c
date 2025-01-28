@@ -12,7 +12,6 @@
 
 #include "maps.h"
 
-// TODO
 int	is_valid_grid(char **grid, size_t line_len)
 {
 	if (is_newline(grid))
@@ -24,6 +23,25 @@ int	is_valid_grid(char **grid, size_t line_len)
 	if (is_forbidden_char(grid))
 		return (0);
 	return (1);
+}
+
+// TODO
+size_t	get_max_line_size(char **grid)
+{
+	size_t	i;
+	size_t	max_len;
+	size_t	curr_len;
+
+	i = 0;
+	max_len = 0;
+	while (grid[i])
+	{
+		curr_len = ft_strlen(grid[i]);
+		if (curr_len > max_len)
+			max_len = curr_len;
+		i++;
+	}
+	return (max_len);
 }
 
 char	**retrieve_grid(char *file, size_t line_len)
@@ -124,6 +142,39 @@ void	fill_canva(t_map *map, size_t line_len)
 	return ;
 }
 
+char	**squarify(char **grid, size_t line_len)
+{
+	char	**result;
+	size_t	i;
+	size_t	max_len;
+
+	if (!grid)
+		return (NULL);
+	max_len = get_max_line_size(grid);
+	if (max_len == 0)
+		return (set_error(err_grid_format), free_grid(grid), NULL);
+	result = malloc(sizeof(char *) * (line_len + 1));
+	if (!result)
+		return (free_grid(grid), NULL);
+	i = 0;
+	while (grid[i])
+	{
+		if (ft_strlen(grid[i]) < max_len)
+		{
+			grid[i][ft_strlen(grid[i]) - 1] = '\0';
+			result[i] = ft_strjoin(grid[i], ft_strnew(max_len
+						- ft_strlen(grid[i]), ' '));
+			result[i][max_len - 1] = '\n';
+		}
+		else
+			result[i] = ft_strdup(grid[i]);
+		i++;
+	}
+	result[i - 1][max_len - 1] = '\0';
+	result[i] = NULL;
+	return (free_grid(grid), result);
+}
+
 // TODO
 t_map	*parse_map(char *file)
 {
@@ -135,7 +186,7 @@ t_map	*parse_map(char *file)
 	line_len = count_grid_line(file);
 	if (line_len < 3)
 		return (set_error(err_grid_format), NULL);
-	grid_tmp = retrieve_grid(file, line_len);
+	grid_tmp = squarify(retrieve_grid(file, line_len), line_len);
 	if (!grid_tmp)
 		return (set_error(err_malloc), NULL);
 	if (!is_valid_grid(grid_tmp, line_len))

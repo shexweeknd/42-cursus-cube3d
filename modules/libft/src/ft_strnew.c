@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube.h                                             :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 14:31:15 by hrazafis          #+#    #+#             */
-/*   Updated: 2025/01/28 09:31:12 by hramaros         ###   ########.fr       */
+/*   Created: 2025/01/28 11:18:02 by hramaros          #+#    #+#             */
+/*   Updated: 2025/01/28 11:19:49 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE_H
-# define CUBE_H
+#include "libft.h"
 
-# include "errors.h"
-# include "libft.h"
-# include "maps.h"
-# include "mlx.h"
-# include "screen.h"
-# include <errno.h>
+char	*ft_strnew(size_t size, char c)
+{
+	char	*result;
+	size_t	i;
 
-# define PLAYER_COLOR 0x00FF00
-
-#endif
+	result = malloc(sizeof(char) * size + 1);
+	if (!result)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		result[i] = c;
+		i++;
+	}
+	result[size] = '\0';
+	return (result);
+}

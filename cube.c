@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:33:07 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/27 14:14:54 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/28 09:31:01 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 	data_init(&screen);
 	screen.p_x = WIDTH / 4;
 	screen.p_y = HEIGHT / 4;
-	screen.p_color = 0x00FF00;
+	screen.p_color = PLAYER_COLOR;
 	cube_hook(&screen);
 	draw_map(&screen, screen.map);
 	draw_square(&screen, PLAYER_SIZE, screen.p_x, screen.p_y, screen.p_color);
