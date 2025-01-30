@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:17:37 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/28 12:54:54 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:33:23 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,14 @@
 # include <fcntl.h>
 # include <stdio.h>
 
+# define PLAYER_COLOR 0x00FF00
+
 typedef struct s_map
 {
 	char	**grid;
 	int		p_x;
 	int		p_y;
+	int		p_color;
 }			t_map;
 
 typedef struct s_pos

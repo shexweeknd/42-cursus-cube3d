@@ -17,15 +17,18 @@ INC_DIR = ./inc
 
 MINILIBX_DIR = ../minilibx-linux
 LIBFT_DIR = ../libft/inc/
+LIBMAPS_DIR = ../maps/inc/
+LIBERRORS_DIR = ../errors/inc/
 
 #FILES
-SRCS = screen.c \
+SRCS = screen_keys.c \
 		screen_utils.c \
+		screen_draw.c \
 
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 
 #INCLUDES
-INCLUDES = -I$(MINILIBX_DIR) -I$(LIBFT_DIR) -I$(INC_DIR)
+INCLUDES = -I$(MINILIBX_DIR) -I$(LIBFT_DIR) -I$(LIBMAPS_DIR) -I$(LIBERRORS_DIR) -I$(INC_DIR)
 
 all: $(MINILIBX_DIR) $(OBJS_DIR) | $(NAME)
 

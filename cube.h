@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:31:15 by hrazafis          #+#    #+#             */
-/*   Updated: 2025/01/28 13:06:08 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:33:19 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,5 @@
 # include "mlx.h"
 # include "screen.h"
 # include <errno.h>
-
-# define PLAYER_COLOR 0x00FF00
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:18:02 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/28 12:55:11 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:07:33 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ t_map	*parse_map(char *file)
 
 	result = NULL;
 	line_len = count_grid_line(file);
+	if (get_error())
+		return (NULL);
 	if (line_len < 3)
 		return (set_error(err_grid_format), NULL);
 	grid_tmp = squarify(retrieve_grid(file, line_len), line_len);
