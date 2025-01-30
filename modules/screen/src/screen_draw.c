@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:08:20 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/30 13:51:40 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:24:35 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ void	draw_map(t_screen *screen)
 	screen->img = mlx_new_image(screen->mlx, WIN_WIDTH, WIN_HEIGHT);
 	put_black_screen(screen);
 	draw_map_grid(screen);
+	draw_map_player(screen);
 	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
 }

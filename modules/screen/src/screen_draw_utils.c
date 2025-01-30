@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:48:49 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/30 13:51:45 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:28:04 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,13 @@ void	draw_map_bloc(t_screen *screen, int i, int j, char **grid)
 	{
 		draw_square(screen, screen->map->bloc_size * j, screen->map->bloc_size
 			* i, 's');
-		draw_square(screen, screen->map->p_x * screen->map->bloc_size
-			+ screen->map->bloc_size / 2 - screen->map->player_size / 2,
-			screen->map->p_y * screen->map->bloc_size + screen->map->bloc_size
-			/ 2 - screen->map->player_size / 2, 'p');
 	}
+	return ;
+}
+
+void	draw_map_player(t_screen *screen)
+{
+	draw_square(screen, screen->map->p_x, screen->map->p_y, 'p');
+	printf("Player pos: %d, %d\n", screen->map->p_x, screen->map->p_y);
 	return ;
 }
