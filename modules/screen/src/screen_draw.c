@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:08:20 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/30 11:59:58 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:51:40 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,29 @@ void	put_black_screen(t_screen *screen)
 	int	j;
 
 	i = 0;
-	while (i < WIDTH)
+	while (i < WIN_WIDTH)
 	{
 		j = 0;
-		while (j < HEIGHT)
+		while (j < WIN_HEIGHT)
 			my_mlx_pixel_put(screen, i, j++, 0x000000);
 		i++;
 	}
 }
 
-void	draw_square(t_screen *screen, int size, int p_x, int p_y, int color)
+void	draw_square(t_screen *screen, int pos_x, int pos_y, char cmd)
 {
 	int	i;
 	int	j;
+	int	size;
+	int	color;
 
+	config_size_color(&size, &color, cmd, screen->map);
 	i = 0;
 	while (i < size)
 	{
 		j = 0;
 		while (j < size)
-			my_mlx_pixel_put(screen, p_x + i, p_y + j++, color);
+			my_mlx_pixel_put(screen, pos_x + i, pos_y + j++, color);
 		i++;
 	}
 }
@@ -64,25 +67,8 @@ void	draw_map_grid(t_screen *screen)
 		j = 0;
 		while (grid[i][j])
 		{
-			if (grid[i][j] == '1')
-				draw_square(screen, SQUARE_SIZE - 1, SQUARE_SIZE * j,
-					SQUARE_SIZE * i, 0xFFFF);
-			else if (grid[i][j] == '0')
-				draw_square(screen, SQUARE_SIZE - 1, SQUARE_SIZE * j,
-					SQUARE_SIZE * i, 0xE2D8D7);
-			else if (grid[i][j] == 'N' || grid[i][j] == 'S'
-				|| grid[i][j] == 'W')
-			{
-				draw_square(screen, SQUARE_SIZE - 1, SQUARE_SIZE * j,
-					SQUARE_SIZE * i, 0xE2D8D7);
-				draw_square(screen, PLAYER_SIZE, screen->map->p_x * SQUARE_SIZE
-					+ SQUARE_SIZE / 2 - PLAYER_SIZE / 2, screen->map->p_y
-					* SQUARE_SIZE + SQUARE_SIZE / 2 - PLAYER_SIZE / 2,
-					screen->map->p_color);
-			}
+			draw_map_bloc(screen, i, j, grid);
 			j++;
-			mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img,
-				0, 0);
 		}
 		i++;
 	}
@@ -91,7 +77,7 @@ void	draw_map_grid(t_screen *screen)
 void	draw_map(t_screen *screen)
 {
 	mlx_destroy_image(screen->mlx, screen->img);
-	screen->img = mlx_new_image(screen->mlx, WIDTH, HEIGHT);
+	screen->img = mlx_new_image(screen->mlx, WIN_WIDTH, WIN_HEIGHT);
 	put_black_screen(screen);
 	draw_map_grid(screen);
 	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);

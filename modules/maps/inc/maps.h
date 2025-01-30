@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:17:37 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/30 11:33:23 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:25:47 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,20 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-# define PLAYER_COLOR 0x00FF00
+# define PLAYER_COLOR 0xFF0000
 
 typedef struct s_map
 {
 	char	**grid;
+	int		map_width;
+	int		map_height;
+	int		bloc_size;
+	int		player_size;
 	int		p_x;
 	int		p_y;
 	int		p_color;
+	int		y_len;
+	int		x_len;
 }			t_map;
 
 typedef struct s_pos

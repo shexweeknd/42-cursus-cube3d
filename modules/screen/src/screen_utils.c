@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:31:35 by hrazafis          #+#    #+#             */
-/*   Updated: 2025/01/30 11:39:01 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:30:58 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,21 @@ int	get_scr_ppos(int p_pos)
 
 int	data_init(t_screen *screen, char *map_file)
 {
-	t_map	*map;
-
-	// INIT THE MAP
-	map = parse_map(map_file);
-	if (!map || !map->grid || get_error())
-		return (free(map), 0);
-	screen->map = map;
-	screen->map->p_x = get_player_pos(map->grid, 'x');
-	screen->map->p_y = get_player_pos(map->grid, 'y');
+	screen->map = parse_map(map_file);
+	if (!screen->map || !screen->map->grid || get_error())
+		return (free(screen->map), 0);
+	screen->map->p_x = get_player_pos(screen->map->grid, 'x');
+	screen->map->p_y = get_player_pos(screen->map->grid, 'y');
+	screen->map->map_height = WIN_HEIGHT / 4;
+	screen->map->map_width = WIN_WIDTH / 6;
 	screen->map->p_color = PLAYER_COLOR;
+	screen->map->bloc_size = screen->map->map_height / screen->map->y_len;
+	screen->map->player_size = screen->map->bloc_size / 4;
 	printf("\33[1;32mMap loaded successfully!\33[0m\n");
-	
-	// INIT THE SCREEN
 	screen->mlx = mlx_init();
-	screen->mlx_win = mlx_new_window(screen->mlx, WIDTH, HEIGHT, "CUBE3D");
-	screen->img = mlx_new_image(screen->mlx, WIDTH, HEIGHT);
+	screen->mlx_win = mlx_new_window(screen->mlx, WIN_WIDTH, WIN_HEIGHT,
+			"CUBE3D");
+	screen->img = mlx_new_image(screen->mlx, WIN_WIDTH, WIN_HEIGHT);
 	screen->addr = mlx_get_data_addr(screen->img, &screen->bits_per_pixel,
 			&screen->line_length, &screen->endian);
 	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);

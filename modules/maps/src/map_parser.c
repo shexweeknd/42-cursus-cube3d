@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:18:02 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/30 12:07:33 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:17:23 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ t_map	*parse_map(char *file)
 	if (!result)
 		return (set_error(err_malloc), free_grid(grid_tmp), NULL);
 	result->grid = grid_tmp;
-	result->p_x = get_player_pos(grid_tmp, 'x');
-	result->p_y = get_player_pos(grid_tmp, 'y');
+	result->y_len = line_len;
+	result->x_len = ft_strlen(grid_tmp[0]);
 	fill_canva(result, line_len);
 	if (get_error())
 		return (free_grid(grid_tmp), free(result), NULL);

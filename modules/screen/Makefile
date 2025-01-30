@@ -24,6 +24,7 @@ LIBERRORS_DIR = ../errors/inc/
 SRCS = screen_keys.c \
 		screen_utils.c \
 		screen_draw.c \
+		screen_draw_utils.c \
 
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 

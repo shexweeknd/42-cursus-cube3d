@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:31:28 by hrazafis          #+#    #+#             */
-/*   Updated: 2025/01/30 11:32:24 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:03:35 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	cube_hook(t_screen *screen)
 int	handle_keypress(int keycode, t_screen *screen)
 {
 	mlx_destroy_image(screen->mlx, screen->img);
-	screen->img = mlx_new_image(screen->mlx, WIDTH, HEIGHT);
+	screen->img = mlx_new_image(screen->mlx, WIN_WIDTH, WIN_HEIGHT);
 	put_black_screen(screen);
 	draw_map_grid(screen);
 	if (keycode == 13 || keycode == 119)

@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/30 12:57:17 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:51:58 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-// WIDTH AND HEIGHT OF THE WINDOW
-# define WIDTH 1920
-# define HEIGHT 1080
+// WIN_WIDTH AND WIN_HEIGHT OF THE WINDOW
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
 # define PIXEL_SIZE 10
 
 // KEYS NUMBERS
@@ -57,11 +57,14 @@ int			handle_key(int key, t_screen *screen);
 
 // DRAW
 void		my_mlx_pixel_put(t_screen *screen, int x, int y, int color);
-void		draw_square(t_screen *screen, int size, int p_x, int p_y,
-				int color);
+void		draw_square(t_screen *screen, int pos_x, int pos_y, char cmd);
 void		put_black_screen(t_screen *screen);
 void		draw_map_grid(t_screen *screen);
 void		draw_map_player(t_screen *screen);
 void		draw_map(t_screen *screen);
+
+// DRAW UTILS
+void		config_size_color(int *size, int *color, char cmd, t_map *map);
+void		draw_map_bloc(t_screen *screen, int i, int j, char **grid);
 
 #endif
