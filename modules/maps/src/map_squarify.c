@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:52:03 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/28 12:59:15 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:55:13 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,19 @@ void	process_line(char **result, char **grid, size_t max_len)
 {
 	size_t	i;
 	char	*padding;
-	char	*tmp;
 
 	i = 0;
 	while (grid[i])
 	{
+		if (grid[i][ft_strlen(grid[i]) - 1] == '\n')
+			grid[i][ft_strlen(grid[i]) - 1] = '\0';
 		padding = NULL;
-		tmp = NULL;
-		if (ft_strlen(grid[i]) < max_len)
+		if (ft_strlen(grid[i]) < max_len - 1)
 		{
 			padding = ft_strnew(max_len - ft_strlen(grid[i]) + 1, ' ');
-			tmp = ft_strndup(grid[i], ft_strlen(grid[i]) - 1);
-			result[i] = ft_strjoin(tmp, padding);
-			result[i][max_len - 1] = '\n';
+			result[i] = ft_strjoin(grid[i], padding);
+			result[i][max_len - 1] = '\0';
 			free(padding);
-			free(tmp);
 		}
 		else
 			result[i] = ft_strdup(grid[i]);
@@ -52,7 +50,7 @@ char	**squarify(char **grid, size_t line_len)
 	result = malloc(sizeof(char *) * (line_len + 1));
 	if (!result)
 		return (free_grid(grid), NULL);
-	process_line(result, grid, max_len);
+	process_line(result, grid, max_len - 1);
 	result[line_len - 1][max_len - 1] = '\0';
 	result[line_len] = NULL;
 	return (free_grid(grid), result);

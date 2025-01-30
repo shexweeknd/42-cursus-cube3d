@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:11:27 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/28 12:46:15 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:46:53 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	print_grid(char **grid)
 
 	i = 0;
 	while (grid[i])
-		printf("%s", grid[i++]);
-	printf("\n");
+		printf("%s\n", grid[i++]);
 }
 
 void	free_grid(char **grid)

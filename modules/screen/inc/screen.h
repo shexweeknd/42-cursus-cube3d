@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/30 11:32:07 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:57:17 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <stdlib.h>
 
 // WIDTH AND HEIGHT OF THE WINDOW
-# define WIDTH 720
-# define HEIGHT 480
+# define WIDTH 1920
+# define HEIGHT 1080
 # define PIXEL_SIZE 10
 
 // KEYS NUMBERS
