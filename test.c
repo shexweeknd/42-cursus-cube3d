@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
+// $ cc -I./modules/minilibx-linux test.c -g -L./modules/minilibx-linux -lmlx -lX11 -lXext -lm 
+
 #define WIN_WIDTH 800
 #define WIN_HEIGHT 600
 #define MAP_WIDTH 8
