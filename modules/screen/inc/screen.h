@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/30 13:51:58 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:51:03 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 // WIN_WIDTH AND WIN_HEIGHT OF THE WINDOW
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
-# define PIXEL_SIZE 10
+# define PIXEL_SIZE 5
 
 // KEYS NUMBERS
 # define KEY_PRESS 2
@@ -47,7 +47,6 @@ typedef struct s_screen
 
 // UTILS
 void		free_screen(t_screen *screen);
-int			handle_keypress(int keycode, t_screen *screen);
 void		cube_hook(t_screen *screen);
 int			data_init(t_screen *screen, char *map_file);
 
@@ -66,5 +65,8 @@ void		draw_map(t_screen *screen);
 // DRAW UTILS
 void		config_size_color(int *size, int *color, char cmd, t_map *map);
 void		draw_map_bloc(t_screen *screen, int i, int j, char **grid);
+
+// KEYS UTILS
+int			is_valid_move(t_map *map, char cmd);
 
 #endif
