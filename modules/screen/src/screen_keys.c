@@ -6,16 +6,21 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:31:28 by hrazafis          #+#    #+#             */
-/*   Updated: 2025/02/03 11:52:15 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:45:27 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "events.h"
 #include "screen.h"
 
 void	cube_hook(t_screen *screen)
 {
-	mlx_hook(screen->mlx_win, KEY_PRESS, 1L << 0, handle_key, screen);
-	mlx_hook(screen->mlx_win, KEY_EXIT, 1L << 17, handle_exit, screen);
+	mlx_hook(screen->mlx_win, ON_KEYPRESS, KEY_PRESS_MASK, handle_keypress,
+		screen);
+	mlx_hook(screen->mlx_win, ON_KEYRELEASE, KEY_RELEASE_MASK,
+		handle_keyrelease, screen);
+	mlx_hook(screen->mlx_win, ON_DESTROY, STRUCTURE_NOTIFY_MASK, handle_exit,
+		screen);
 }
 
 int	is_outside_map(t_map *map, int x, int y)

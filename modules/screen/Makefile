@@ -25,6 +25,7 @@ SRCS = screen_keys.c \
 		screen_utils.c \
 		screen_draw.c \
 		screen_draw_utils.c \
+		player_direction.c \
 
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 

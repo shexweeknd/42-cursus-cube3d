@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:31:35 by hrazafis          #+#    #+#             */
-/*   Updated: 2025/02/03 11:50:16 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:43:47 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,39 @@ int	handle_exit(t_screen *screen)
 	return (0);
 }
 
-int	handle_key(int key, t_screen *screen)
+int	handle_keypress(int key, t_screen *screen)
 {
 	printf("Key: %d\n", key);
 	if (key == 53 || key == 65307)
 		handle_exit(screen);
+	if (key == 119)
+		_player_direction('w', 1);
+	else if (key == 97)
+		_player_direction('a', 1);
+	else if (key == 115)
+		_player_direction('s', 1);
+	else if (key == 100)
+		_player_direction('d', 1);
+	move_player(screen->map);
 	mlx_destroy_image(screen->mlx, screen->img);
 	screen->img = mlx_new_image(screen->mlx, WIN_WIDTH, WIN_HEIGHT);
 	put_black_screen(screen);
 	draw_map_grid(screen);
-	if ((key == 13 || key == 119) && is_valid_move(screen->map, 'w'))
-		screen->map->p_y -= PIXEL_SIZE;
-	if ((key == 0 || key == 97) && is_valid_move(screen->map, 'a'))
-		screen->map->p_x -= PIXEL_SIZE;
-	if ((key == 1 || key == 115) && is_valid_move(screen->map, 's'))
-		screen->map->p_y += PIXEL_SIZE;
-	if ((key == 2 || key == 100) && is_valid_move(screen->map, 'd'))
-		screen->map->p_x += PIXEL_SIZE;
 	draw_map_player(screen);
 	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
+	return (0);
+}
+
+int handle_keyrelease(int key)
+{
+	if (key == 119)
+		_player_direction('w', 0);
+	else if (key == 97)
+		_player_direction('a', 0);
+	else if (key == 115)
+		_player_direction('s', 0);
+	else if (key == 100)
+		_player_direction('d', 0);
 	return (0);
 }
 

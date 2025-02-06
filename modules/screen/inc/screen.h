@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/03 11:51:03 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:46:55 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 // WIN_WIDTH AND WIN_HEIGHT OF THE WINDOW
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
-# define PIXEL_SIZE 5
+# define PIXEL_SIZE 2
 
 // KEYS NUMBERS
 # define KEY_PRESS 2
@@ -52,7 +52,8 @@ int			data_init(t_screen *screen, char *map_file);
 
 // KEYS
 int			handle_exit(t_screen *screen);
-int			handle_key(int key, t_screen *screen);
+int			handle_keypress(int key, t_screen *screen);
+int			handle_keyrelease(int key);
 
 // DRAW
 void		my_mlx_pixel_put(t_screen *screen, int x, int y, int color);
@@ -68,5 +69,7 @@ void		draw_map_bloc(t_screen *screen, int i, int j, char **grid);
 
 // KEYS UTILS
 int			is_valid_move(t_map *map, char cmd);
+void		move_player(t_map *map);
+int			*_player_direction(int cmd, int value);
 
 #endif
