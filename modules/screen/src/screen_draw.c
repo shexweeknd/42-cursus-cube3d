@@ -6,52 +6,32 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:08:20 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/30 14:24:35 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:30:41 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "screen.h"
 
-void	my_mlx_pixel_put(t_screen *screen, int x, int y, int color)
+void	draw_map_bloc(t_screen *screen, int i, int j, char **grid)
 {
-	char	*dst;
-
-	dst = screen->addr + (y * screen->line_length + x * (screen->bits_per_pixel
-				/ 8));
-	*(unsigned int *)dst = color;
+	if (grid[i][j] == '1')
+		draw_square(screen, screen->map->bloc_size * j, screen->map->bloc_size
+			* i, 'b');
+	else if (grid[i][j] == '0')
+		draw_square(screen, screen->map->bloc_size * j, screen->map->bloc_size
+			* i, 's');
+	else if (grid[i][j] == 'N' || grid[i][j] == 'S' || grid[i][j] == 'W')
+	{
+		draw_square(screen, screen->map->bloc_size * j, screen->map->bloc_size
+			* i, 's');
+	}
+	return ;
 }
 
-void	put_black_screen(t_screen *screen)
+void	draw_map_player(t_screen *screen)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < WIN_WIDTH)
-	{
-		j = 0;
-		while (j < WIN_HEIGHT)
-			my_mlx_pixel_put(screen, i, j++, 0x000000);
-		i++;
-	}
-}
-
-void	draw_square(t_screen *screen, int pos_x, int pos_y, char cmd)
-{
-	int	i;
-	int	j;
-	int	size;
-	int	color;
-
-	config_size_color(&size, &color, cmd, screen->map);
-	i = 0;
-	while (i < size)
-	{
-		j = 0;
-		while (j < size)
-			my_mlx_pixel_put(screen, pos_x + i, pos_y + j++, color);
-		i++;
-	}
+	draw_square(screen, screen->map->p_x, screen->map->p_y, 'p');
+	return ;
 }
 
 void	draw_map_grid(t_screen *screen)

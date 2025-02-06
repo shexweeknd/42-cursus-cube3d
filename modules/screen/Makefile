@@ -21,11 +21,12 @@ LIBMAPS_DIR = ../maps/inc/
 LIBERRORS_DIR = ../errors/inc/
 
 #FILES
-SRCS = screen_keys.c \
-		screen_utils.c \
+SRCS =	screen_utils.c \
 		screen_draw.c \
 		screen_draw_utils.c \
-		player_direction.c \
+		screen_handlers.c \
+		screen_config.c \
+		move_player.c \
 
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 

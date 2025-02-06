@@ -6,11 +6,53 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:48:49 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/03 11:37:03 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:30:38 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "screen.h"
+
+void	my_mlx_pixel_put(t_screen *screen, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = screen->addr + (y * screen->line_length + x * (screen->bits_per_pixel
+				/ 8));
+	*(unsigned int *)dst = color;
+}
+
+void	put_black_screen(t_screen *screen)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < WIN_WIDTH)
+	{
+		j = 0;
+		while (j < WIN_HEIGHT)
+			my_mlx_pixel_put(screen, i, j++, 0x000000);
+		i++;
+	}
+}
+
+void	draw_square(t_screen *screen, int pos_x, int pos_y, char cmd)
+{
+	int	i;
+	int	j;
+	int	size;
+	int	color;
+
+	config_size_color(&size, &color, cmd, screen->map);
+	i = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (j < size)
+			my_mlx_pixel_put(screen, pos_x + i, pos_y + j++, color);
+		i++;
+	}
+}
 
 void	config_size_color(int *size, int *color, char cmd, t_map *map)
 {
@@ -32,25 +74,12 @@ void	config_size_color(int *size, int *color, char cmd, t_map *map)
 	return ;
 }
 
-void	draw_map_bloc(t_screen *screen, int i, int j, char **grid)
+int	update_frame(t_screen *screen)
 {
-	if (grid[i][j] == '1')
-		draw_square(screen, screen->map->bloc_size * j, screen->map->bloc_size
-			* i, 'b');
-	else if (grid[i][j] == '0')
-		draw_square(screen, screen->map->bloc_size * j, screen->map->bloc_size
-			* i, 's');
-	else if (grid[i][j] == 'N' || grid[i][j] == 'S' || grid[i][j] == 'W')
-	{
-		draw_square(screen, screen->map->bloc_size * j, screen->map->bloc_size
-			* i, 's');
-	}
-	return ;
-}
-
-void	draw_map_player(t_screen *screen)
-{
-	draw_square(screen, screen->map->p_x, screen->map->p_y, 'p');
-	printf("Player pos: %d, %d\n", screen->map->p_x, screen->map->p_y);
-	return ;
+	move_player(screen->map);
+	put_black_screen(screen);
+	draw_map_grid(screen);
+	draw_map_player(screen);
+	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
+	return (0);
 }

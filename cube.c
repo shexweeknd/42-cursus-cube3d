@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:33:07 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/03 11:49:48 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:14:45 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(int ac, char **av)
 		return (print_error(), 1);
 	if (!data_init(&screen, av[1]))
 		return (print_error(), 1);
-	print_grid(screen.map->grid);
 	cube_hook(&screen);
 	draw_map(&screen);
 	mlx_loop(screen.mlx);
