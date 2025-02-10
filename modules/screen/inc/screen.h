@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/10 15:23:06 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:57:57 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define KEY_EXIT 17
 
 // SIZE
-# define PLAYER_SIZE 20
+// # define PLAYER_SIZE 20
 # define SQUARE_SIZE 100
 
 // constant

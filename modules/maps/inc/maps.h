@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:17:37 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/10 15:15:02 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:48:52 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 
 # define PLAYER_COLOR 0xFF0000
+# define FOV 60
 
 typedef struct s_map
 {
