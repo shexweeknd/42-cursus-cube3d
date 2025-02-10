@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/10 15:11:13 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:23:06 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "libft.h"
 # include "maps.h"
 # include "mlx.h"
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 
@@ -33,6 +34,9 @@
 // SIZE
 # define PLAYER_SIZE 20
 # define SQUARE_SIZE 100
+
+// constant
+# define M_PI 3.14159265358979323846
 
 typedef struct s_screen
 {
@@ -67,7 +71,7 @@ void		draw_map(t_screen *screen);
 // DRAW UTILS
 void		config_size_color(int *size, int *color, char cmd, t_map *map);
 void		draw_map_bloc(t_screen *screen, int i, int j, char **grid);
-void		draw_line(t_screen *screen, int x1, int y1);
+void		draw_line(t_screen *screen, double x1, double y1);
 void		raycast(t_screen *screen);
 
 // KEYS UTILS

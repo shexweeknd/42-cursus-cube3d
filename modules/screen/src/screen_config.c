@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:31:35 by hrazafis          #+#    #+#             */
-/*   Updated: 2025/02/06 15:26:46 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:16:31 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,32 @@ void	cube_hook(t_screen *screen)
 		screen);
 	mlx_hook(screen->mlx_win, ON_DESTROY, (1L << 17), handle_exit, screen);
 	mlx_loop_hook(screen->mlx, update_frame, screen);
+}
+
+int	config_angle(char **grid)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (grid[i])
+	{
+		j = 0;
+		while (grid[i][j])
+		{
+			if (grid[i][j] == 'N')
+				return (270);
+			if (grid[i][j] == 'S')
+				return (90);
+			if (grid[i][j] == 'W')
+				return (180);
+			if (grid[i][j] == 'E')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
 
 int	data_init(t_screen *screen, char *map_file)
@@ -37,6 +63,7 @@ int	data_init(t_screen *screen, char *map_file)
 	screen->map->p_y = get_player_pos(screen->map->grid, 'y')
 		* screen->map->bloc_size + screen->map->bloc_size / 2
 		- screen->map->player_size / 2;
+	screen->map->p_angle = config_angle(screen->map->grid);
 	printf("\33[1;32mMap loaded successfully!\33[0m\n");
 	screen->mlx = mlx_init();
 	screen->mlx_win = mlx_new_window(screen->mlx, WIN_WIDTH, WIN_HEIGHT,

@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:17:37 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/30 13:25:47 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:15:02 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_map
 	int		p_x;
 	int		p_y;
 	int		p_color;
+	int		p_angle;
 	int		y_len;
 	int		x_len;
 }			t_map;
