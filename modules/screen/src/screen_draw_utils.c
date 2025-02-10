@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:48:49 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/06 15:30:38 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:11:45 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,54 @@ void	config_size_color(int *size, int *color, char cmd, t_map *map)
 	return ;
 }
 
+void	draw_line(t_screen *screen, int x1, int y1)
+{
+	int	x;
+	int	y;
+	int	dx;
+	int	dy;
+	int	p;
+
+	x = screen->map->p_x;
+	y = screen->map->p_y;
+	dx = abs(x1 - screen->map->p_x);
+	dy = abs(y1 - screen->map->p_y);
+	p = 2 * dy - dx;
+	while (x <= x1)
+	{
+		my_mlx_pixel_put(screen, x, y, 0xFF0000);
+		x++;
+		if (p < 0)
+			p += 2 * dy;
+		else
+		{
+			p += 2 * (dy - dx);
+			y++;
+		}
+	}
+}
+
+void	raycast(t_screen *screen)
+{
+	int	player_x;
+	int	player_y;
+	int	dir_x;
+	int	dir_y;
+
+	player_x = screen->map->p_x;
+	player_y = screen->map->p_y;
+	dir_x = player_x + 100;
+	dir_y = player_y + 100;
+	draw_line(screen, dir_x, dir_y);
+}
+
 int	update_frame(t_screen *screen)
 {
 	move_player(screen->map);
 	put_black_screen(screen);
 	draw_map_grid(screen);
 	draw_map_player(screen);
+	raycast(screen);
 	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
 	return (0);
 }
