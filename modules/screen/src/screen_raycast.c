@@ -6,11 +6,23 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:46:15 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 12:07:36 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 14:04:33 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "screen.h"
+
+int	is_wall(t_map *map, double x_dest, double y_dest)
+{
+	int	x;
+	int	y;
+
+	x = (int)(x_dest / map->bloc_size);
+	y = (int)(y_dest / map->bloc_size);
+	if (x < 0 || x >= map->x_len || y < 0 || y >= map->y_len)
+		return (1);
+	return (map->grid[y][x] == '1');
+}
 
 void	draw_line(t_screen *screen, double x1, double y1, int color)
 {
@@ -30,7 +42,7 @@ void	draw_line(t_screen *screen, double x1, double y1, int color)
 		step = fabs(dy);
 	dx /= step;
 	dy /= step;
-	while ((int)(x - x1) || (int)(y - y1))
+	while (((int)(x - x1) || (int)(y - y1)) && !is_wall(screen->map, x, y))
 	{
 		if (x >= 0 && x < WIN_WIDTH && y >= 0 && y < WIN_HEIGHT)
 			my_mlx_pixel_put(screen, x, y, color);

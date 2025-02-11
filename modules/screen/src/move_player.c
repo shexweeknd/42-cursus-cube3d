@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:10:42 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 13:46:40 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 14:03:06 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,6 @@ int	*_player_direction(int cmd, int value)
 	if (cmd == 'w' || cmd == 'a' || cmd == 's' || cmd == 'd')
 		direction[cmd] = value;
 	return (direction);
-}
-
-int	is_valid_coords(t_map *map, int x_dest, int y_dest)
-{
-	if (x_dest <= map->bloc_size || y_dest <= map->bloc_size)
-		return (0);
-	if (x_dest >= map->bloc_size * (map->x_len - 1) || y_dest >= map->bloc_size
-		* (map->y_len - 1))
-		return (0);
-	return (1);
 }
 
 void	config_next_coord(t_map *map, double *dir_x, double *dir_y)
@@ -66,7 +56,8 @@ void	move_player(t_map *map)
 	dir_x = 0;
 	dir_x = 0;
 	config_next_coord(map, &dir_x, &dir_y);
-	if (is_valid_coords(map, dir_x, dir_y))
+	if (!is_wall(map, dir_x, dir_y) && dir_x > 0 && dir_x < map->map_width
+		&& dir_y > 0 && dir_y < map->map_height)
 	{
 		map->p_x = dir_x;
 		map->p_y = dir_y;

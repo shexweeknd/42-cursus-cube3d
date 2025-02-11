@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 13:34:00 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 14:01:01 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ void		rotate_player(t_map *map);
 int			update_frame(t_screen *screen);
 int			*_player_direction(int cmd, int value);
 char		_is_rotating(int cmd);
+int			is_wall(t_map *map, double x_dest, double y_dest);
 
 #endif

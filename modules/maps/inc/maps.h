@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:17:37 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/10 15:48:52 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 14:05:02 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ typedef struct s_map
 	int		map_height;
 	int		bloc_size;
 	int		player_size;
-	int		p_x;
-	int		p_y;
+	double	p_x;
+	double	p_y;
 	int		p_color;
 	int		p_angle;
 	int		y_len;
