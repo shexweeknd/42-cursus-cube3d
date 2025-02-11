@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 10:55:42 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:14:45 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@
 
 // constant
 # define M_PI 3.14159265358979323846
-# define RAY_DIST 1000
+# define RAY_DIST 40
+# define RAY_DENSITY 1
 
 // MOVEMENTS
 # define ROTATION_SPEED 3
@@ -74,7 +75,7 @@ void		draw_map(t_screen *screen);
 // DRAW UTILS
 void		config_size_color(int *size, int *color, char cmd, t_map *map);
 void		draw_map_bloc(t_screen *screen, int i, int j, char **grid);
-void		draw_line(t_screen *screen, double x1, double y1);
+void		draw_line(t_screen *screen, double x1, double y1, int color);
 void		raycast(t_screen *screen);
 
 // KEYS UTILS

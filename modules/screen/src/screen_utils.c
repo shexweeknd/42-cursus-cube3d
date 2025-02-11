@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:23:54 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 10:48:04 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:52:55 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,32 @@ void	free_screen(t_screen *screen)
 
 int	is_valid_move(t_map *map, char cmd)
 {
-	int	x;
-	int	y;
+	int	dir_x;
+	int	dir_y;
 
-	x = map->p_x;
-	y = map->p_y;
 	if (cmd == 'w')
-		y -= PIXEL_SIZE;
+	{
+		dir_x = map->p_x + PIXEL_SIZE * cos(map->p_angle * M_PI / 180);
+		dir_y = map->p_y + PIXEL_SIZE * sin(map->p_angle * M_PI / 180);
+	}
 	else if (cmd == 'a')
-		x -= PIXEL_SIZE;
+	{
+		dir_x = map->p_x + PIXEL_SIZE * sin(map->p_angle * M_PI / 180);
+		dir_y = map->p_y - PIXEL_SIZE * cos(map->p_angle * M_PI / 180);
+	}
 	else if (cmd == 's')
-		y += PIXEL_SIZE;
+	{
+		dir_x = map->p_x - PIXEL_SIZE * cos(map->p_angle * M_PI / 180);
+		dir_y = map->p_y - PIXEL_SIZE * sin(map->p_angle * M_PI / 180);
+	}
 	else if (cmd == 'd')
-		x += PIXEL_SIZE;
-	if (x <= 0 || y <= 0 || (x > map->x_len * map->bloc_size - map->player_size)
-		|| (y > map->y_len * map->bloc_size - map->player_size))
+	{
+		dir_x = map->p_x - PIXEL_SIZE * sin(map->p_angle * M_PI / 180);
+		dir_y = map->p_y + PIXEL_SIZE * cos(map->p_angle * M_PI / 180);
+	}
+	if (dir_x <= map->bloc_size || dir_y <= map->bloc_size
+		|| dir_x >= map->bloc_size * (map->x_len - 1) || dir_y >= map->bloc_size
+		* (map->y_len - 1))
 		return (0);
 	return (1);
 }
