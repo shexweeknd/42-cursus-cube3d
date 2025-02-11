@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:31:35 by hrazafis          #+#    #+#             */
-/*   Updated: 2025/02/10 15:16:31 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:45:30 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,9 @@ int	data_init(t_screen *screen, char *map_file)
 	screen->map->bloc_size = screen->map->map_height / screen->map->y_len;
 	screen->map->player_size = screen->map->bloc_size / 4;
 	screen->map->p_x = get_player_pos(screen->map->grid, 'x')
-		* screen->map->bloc_size + screen->map->bloc_size / 2
-		- screen->map->player_size / 2;
+		* screen->map->bloc_size + screen->map->bloc_size / 2;
 	screen->map->p_y = get_player_pos(screen->map->grid, 'y')
-		* screen->map->bloc_size + screen->map->bloc_size / 2
-		- screen->map->player_size / 2;
+		* screen->map->bloc_size + screen->map->bloc_size / 2;
 	screen->map->p_angle = config_angle(screen->map->grid);
 	printf("\33[1;32mMap loaded successfully!\33[0m\n");
 	screen->mlx = mlx_init();

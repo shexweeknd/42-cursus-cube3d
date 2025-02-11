@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:08:20 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/10 15:00:06 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:50:45 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,28 @@
 
 void	draw_map_bloc(t_screen *screen, int i, int j, char **grid)
 {
+	int	pos_x;
+	int	pos_y;
+
+	pos_x = screen->map->bloc_size * j + screen->map->bloc_size / 2;
+	pos_y = screen->map->bloc_size * i + screen->map->bloc_size / 2;
 	if (grid[i][j] == '1')
-		draw_square(screen, screen->map->bloc_size * j, screen->map->bloc_size
-			* i, 'b');
+		draw_bloc_square(screen, pos_x, pos_y, 'b');
 	else if (grid[i][j] == '0')
-		draw_square(screen, screen->map->bloc_size * j, screen->map->bloc_size
-			* i, 's');
+		draw_bloc_square(screen, pos_x, pos_y, 's');
 	else if (grid[i][j] == 'N' || grid[i][j] == 'S' || grid[i][j] == 'W')
-	{
-		draw_square(screen, screen->map->bloc_size * j, screen->map->bloc_size
-			* i, 's');
-	}
+		draw_bloc_square(screen, pos_x, pos_y, 's');
 	return ;
 }
 
 void	draw_map_player(t_screen *screen)
 {
-	draw_square(screen, screen->map->p_x, screen->map->p_y, 'p');
+	int	pos_x;
+	int	pos_y;
+
+	pos_x = screen->map->p_x;
+	pos_y = screen->map->p_y;
+	draw_bloc_square(screen, pos_x, pos_y, 'p');
 	return ;
 }
 
@@ -61,6 +66,6 @@ void	draw_map(t_screen *screen)
 	put_black_screen(screen);
 	draw_map_grid(screen);
 	draw_map_player(screen);
-	raycast(screen);
+	trace_rays(screen);
 	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
 }

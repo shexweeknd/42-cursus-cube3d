@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 14:01:01 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:58:51 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 // WIN_WIDTH AND WIN_HEIGHT OF THE WINDOW
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
-# define PIXEL_SIZE 4
+# define PIXEL_SIZE 1
 
 // KEYS NUMBERS
 # define KEY_PRESS 2
@@ -73,10 +73,8 @@ void		draw_map_player(t_screen *screen);
 void		draw_map(t_screen *screen);
 
 // DRAW UTILS
-void		config_size_color(int *size, int *color, char cmd, t_map *map);
-void		draw_map_bloc(t_screen *screen, int i, int j, char **grid);
 void		draw_line(t_screen *screen, double x1, double y1, int color);
-void		raycast(t_screen *screen);
+void		trace_rays(t_screen *screen);
 
 // KEYS UTILS
 void		config_next_coord(t_map *map, double *dir_x, double *dir_y);
@@ -87,5 +85,9 @@ int			update_frame(t_screen *screen);
 int			*_player_direction(int cmd, int value);
 char		_is_rotating(int cmd);
 int			is_wall(t_map *map, double x_dest, double y_dest);
+
+// test
+void		draw_bloc_square(t_screen *screen, int pos_x, int pos_y, char cmd);
+void		draw_map_bloc(t_screen *screen, int i, int j, char **grid);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   screen_raycast.c                                   :+:      :+:    :+:   */
+/*   screen_tracerays.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:46:15 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 14:04:33 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:47:27 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	draw_line(t_screen *screen, double x1, double y1, int color)
 	double	dy;
 	double	step;
 
-	x = screen->map->p_x + screen->map->player_size / 2;
-	y = screen->map->p_y + screen->map->player_size / 2;
+	x = screen->map->p_x;
+	y = screen->map->p_y;
 	dx = x1 - x;
 	dy = y1 - y;
 	if (fabs(dx) > fabs(dy))
@@ -52,7 +52,7 @@ void	draw_line(t_screen *screen, double x1, double y1, int color)
 	return ;
 }
 
-void	raycast(t_screen *screen)
+void	trace_rays(t_screen *screen)
 {
 	double	angle_start;
 	double	angle_end;

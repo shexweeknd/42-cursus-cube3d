@@ -24,8 +24,9 @@ LIBERRORS_DIR = ../errors/inc/
 SRCS =	screen_utils.c \
 		screen_draw.c \
 		screen_draw_utils.c \
+		screen_bloc_utils.c \
 		screen_handlers.c \
-		screen_raycast.c \
+		screen_tracerays.c \
 		screen_config.c \
 		move_player.c \
 		rotate_player.c \
