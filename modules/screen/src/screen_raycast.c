@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:46:15 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/10 15:57:49 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:38:44 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,14 @@ void	raycast(t_screen *screen)
 	double	angle_end;
 	double	dir_x;
 	double	dir_y;
-	double	dist;
 
 	angle_start = screen->map->p_angle - FOV / 2;
 	angle_end = screen->map->p_angle + FOV / 2;
-	dist = 500;
 	while (angle_start < angle_end)
 	{
-		dir_x = screen->map->p_x + dist * cos(angle_start * M_PI / 180);
-		dir_y = screen->map->p_y + dist * sin(angle_start * M_PI / 180);
+		dir_x = screen->map->p_x + RAY_DIST * cos(angle_start * M_PI / 180);
+		dir_y = screen->map->p_y + RAY_DIST * sin(angle_start * M_PI / 180);
 		draw_line(screen, dir_x, dir_y);
 		angle_start += 1;
 	}
-	draw_line(screen, dir_x, dir_y);
-	if (screen->map->p_angle == 0)
-		screen->map->p_angle = 360;
-	screen->map->p_angle = (screen->map->p_angle - 1) % 360;
 }

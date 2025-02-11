@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:48:49 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/10 15:55:10 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:38:13 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,4 @@ void	config_size_color(int *size, int *color, char cmd, t_map *map)
 		*color = 0xE2D8D7;
 	}
 	return ;
-}
-
-int	update_frame(t_screen *screen)
-{
-	move_player(screen->map);
-	put_black_screen(screen);
-	draw_map_grid(screen);
-	draw_map_player(screen);
-	raycast(screen);
-	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
-	return (0);
 }

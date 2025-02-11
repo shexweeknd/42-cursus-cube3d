@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/10 15:57:57 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:55:42 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,14 @@
 # define KEY_EXIT 17
 
 // SIZE
-// # define PLAYER_SIZE 20
-# define SQUARE_SIZE 100
+# define SQUARE_SIZE 1
 
 // constant
 # define M_PI 3.14159265358979323846
+# define RAY_DIST 1000
+
+// MOVEMENTS
+# define ROTATION_SPEED 3
 
 typedef struct s_screen
 {
@@ -77,7 +80,9 @@ void		raycast(t_screen *screen);
 // KEYS UTILS
 int			is_valid_move(t_map *map, char cmd);
 void		move_player(t_map *map);
+void		rotate_player(t_map *map);
 int			update_frame(t_screen *screen);
 int			*_player_direction(int cmd, int value);
+char		_is_rotating(int cmd);
 
 #endif

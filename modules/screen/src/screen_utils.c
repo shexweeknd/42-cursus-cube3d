@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:23:54 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/06 15:27:32 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:48:04 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,16 @@ int	is_valid_move(t_map *map, char cmd)
 		|| (y > map->y_len * map->bloc_size - map->player_size))
 		return (0);
 	return (1);
+}
+
+int	update_frame(t_screen *screen)
+{
+	move_player(screen->map);
+	rotate_player(screen->map);
+	put_black_screen(screen);
+	draw_map_grid(screen);
+	draw_map_player(screen);
+	raycast(screen);
+	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
+	return (0);
 }
