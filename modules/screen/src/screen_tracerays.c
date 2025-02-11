@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:46:15 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 15:47:27 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:36:02 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,23 @@
 
 int	is_wall(t_map *map, double x_dest, double y_dest)
 {
-	int	x;
-	int	y;
-
+	int x, y;
+	if (x_dest < 0 || x_dest >= map->x_len * map->bloc_size || y_dest < 0
+		|| y_dest >= map->y_len * map->bloc_size)
+		return (1);
 	x = (int)(x_dest / map->bloc_size);
 	y = (int)(y_dest / map->bloc_size);
-	if (x < 0 || x >= map->x_len || y < 0 || y >= map->y_len)
+	if (map->grid[y][x] == '1')
 		return (1);
-	return (map->grid[y][x] == '1');
+	return (0);
+}
+
+int	is_adjacent_wall(t_map *map, double x, double y)
+{
+	if (is_wall(map, x, y) || is_wall(map, x + 1, y) || is_wall(map, x - 1, y)
+		|| is_wall(map, x, y + 1) || is_wall(map, x, y - 1))
+		return (1);
+	return (0);
 }
 
 void	draw_line(t_screen *screen, double x1, double y1, int color)
@@ -42,7 +51,8 @@ void	draw_line(t_screen *screen, double x1, double y1, int color)
 		step = fabs(dy);
 	dx /= step;
 	dy /= step;
-	while (((int)(x - x1) || (int)(y - y1)) && !is_wall(screen->map, x, y))
+	while (((int)(x - x1) || (int)(y - y1)) && !is_wall(screen->map, x, y)
+		&& !is_adjacent_wall(screen->map, x, y))
 	{
 		if (x >= 0 && x < WIN_WIDTH && y >= 0 && y < WIN_HEIGHT)
 			my_mlx_pixel_put(screen, x, y, color);

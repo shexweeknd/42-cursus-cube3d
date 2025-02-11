@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 15:58:51 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:36:07 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int			handle_keyrelease(int key);
 
 // DRAW
 void		my_mlx_pixel_put(t_screen *screen, int x, int y, int color);
-void		draw_square(t_screen *screen, int pos_x, int pos_y, char cmd);
 void		put_black_screen(t_screen *screen);
 void		draw_map_grid(t_screen *screen);
 void		draw_map_player(t_screen *screen);
