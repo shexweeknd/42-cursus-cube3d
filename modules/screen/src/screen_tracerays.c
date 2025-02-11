@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:46:15 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 16:36:02 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:52:11 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 int	is_wall(t_map *map, double x_dest, double y_dest)
 {
-	int x, y;
+	int	x;
+	int	y;
+
+	if (!x_dest || !y_dest)
+		return (1);
 	if (x_dest < 0 || x_dest >= map->x_len * map->bloc_size || y_dest < 0
 		|| y_dest >= map->y_len * map->bloc_size)
 		return (1);
