@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:58:41 by hramaros          #+#    #+#             */
-/*   Updated: 2025/01/30 13:30:25 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:44:21 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	fill_canva(t_map *map, size_t line_len)
 		i++;
 	}
 	copy[i] = NULL;
-	flood_canva(copy, line_len, (t_pos){map->p_x, map->p_y});
+	flood_canva(copy, line_len, (t_pos){get_player_pos(map->grid, 'x'),
+		get_player_pos(map->grid, 'y')});
 	free_grid(copy);
 	return ;
 }

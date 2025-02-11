@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 12:14:45 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:34:00 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 // WIN_WIDTH AND WIN_HEIGHT OF THE WINDOW
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
-# define PIXEL_SIZE 2
+# define PIXEL_SIZE 4
 
 // KEYS NUMBERS
 # define KEY_PRESS 2
@@ -36,7 +36,7 @@
 
 // constant
 # define M_PI 3.14159265358979323846
-# define RAY_DIST 40
+# define RAY_DIST 4000
 # define RAY_DENSITY 1
 
 // MOVEMENTS
@@ -79,7 +79,8 @@ void		draw_line(t_screen *screen, double x1, double y1, int color);
 void		raycast(t_screen *screen);
 
 // KEYS UTILS
-int			is_valid_move(t_map *map, char cmd);
+void		config_next_coord(t_map *map, double *dir_x, double *dir_y);
+int			is_valid_move(t_map *map);
 void		move_player(t_map *map);
 void		rotate_player(t_map *map);
 int			update_frame(t_screen *screen);

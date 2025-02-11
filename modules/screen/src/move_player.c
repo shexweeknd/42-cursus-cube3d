@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:10:42 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 12:04:45 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:46:40 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	move_player(t_map *map)
 	double	dir_x;
 	double	dir_y;
 
+	dir_x = 0;
+	dir_x = 0;
 	config_next_coord(map, &dir_x, &dir_y);
 	if (is_valid_coords(map, dir_x, dir_y))
 	{
