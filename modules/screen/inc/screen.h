@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 16:36:07 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/12 13:16:09 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int			update_frame(t_screen *screen);
 int			*_player_direction(int cmd, int value);
 char		_is_rotating(int cmd);
 int			is_wall(t_map *map, double x_dest, double y_dest);
+int			is_adjacent_wall(t_map *map, double x, double y);
 
 // test
 void		draw_bloc_square(t_screen *screen, int pos_x, int pos_y, char cmd);
