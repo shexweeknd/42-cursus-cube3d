@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42Antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/13 21:04:47 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/13 21:21:25 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void		draw_map_player(t_screen *screen);
 void		draw_map(t_screen *screen);
 
 // DRAW UTILS
-void		draw_line(t_screen *screen, double x1, double y1, int color);
+void		draw_line(t_screen *screen, double ray_angle, int color);
 void		trace_rays(t_screen *screen, int dim);
 
 // KEYS UTILS
