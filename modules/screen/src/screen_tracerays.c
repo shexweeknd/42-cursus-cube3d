@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:46:15 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 16:52:11 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:43:49 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,25 +66,67 @@ void	draw_line(t_screen *screen, double x1, double y1, int color)
 	return ;
 }
 
-void	trace_rays(t_screen *screen)
+void	render_ray(t_screen *screen, t_pos pos, double ray_angle, int i)
 {
-	double	angle_start;
-	double	angle_end;
+	double	dist;
+	double	w_height;
+	double	w_top;
+	double	w_bottom;
+	int		y;
+
+	dist = sqrt((pos.x - screen->map->p_x) * (pos.x - screen->map->p_x) + (pos.y
+				- screen->map->p_y) * (pos.y - screen->map->p_y));
+	dist *= cos(ray_angle - screen->map->p_angle);
+	w_height = (PIXEL_SIZE * WIN_HEIGHT) / dist;
+	w_top = (WIN_HEIGHT / 2) - (w_height / 2);
+	w_bottom = (WIN_HEIGHT / 2) + (w_height / 2);
+	// TODO
+	y = w_top;
+	while (y < w_bottom)
+	{
+		if (y >= 0 && y < WIN_HEIGHT)
+			my_mlx_pixel_put(screen, i * (WIN_WIDTH / RAYS_NBR), y, 0x00FF00);
+		y++;
+	}
+}
+
+void	draw_line_3d(t_screen *screen, double ray_angle, int i)
+{
+	double	ray_x;
+	double	ray_y;
+
+	ray_x = screen->map->p_x;
+	ray_y = screen->map->p_y;
+	while (!is_wall(screen->map, ray_x, ray_y) && !is_adjacent_wall(screen->map,
+			ray_x, ray_y))
+	{
+		ray_x += cos(ray_angle) * 5;
+		ray_y += sin(ray_angle) * 5;
+	}
+	render_ray(screen, (t_pos){ray_x, ray_y}, ray_angle, i);
+	return ;
+}
+
+void	trace_rays(t_screen *screen, int dim)
+{
+	int		i;
 	double	dir_x;
 	double	dir_y;
+	double	ray_angle;
 
-	angle_start = screen->map->p_angle - FOV / 2;
-	angle_end = screen->map->p_angle + FOV / 2;
-	while (angle_start < angle_end)
+	i = 0;
+	while (i < RAYS_NBR)
 	{
-		dir_x = screen->map->p_x + RAY_DIST * cos(angle_start * M_PI / 180);
-		dir_y = screen->map->p_y + RAY_DIST * sin(angle_start * M_PI / 180);
-		draw_line(screen, dir_x, dir_y, 0xFF0000);
-		angle_start += RAY_DENSITY;
+		ray_angle = screen->map->p_angle - (FOV / 2) + (i * FOV / RAYS_NBR);
+		if (dim == 2)
+			draw_line(screen, screen->map->p_x + RAY_DIST * cos(ray_angle),
+				screen->map->p_y + RAY_DIST * sin(ray_angle), 0xFF0000);
+		else if (dim == 3)
+			draw_line_3d(screen, ray_angle, i);
+		i++;
 	}
-	dir_x = screen->map->p_x + RAY_DIST * cos(screen->map->p_angle * M_PI
-			/ 180);
-	dir_y = screen->map->p_y + RAY_DIST * sin(screen->map->p_angle * M_PI
-			/ 180);
+	// RAY PRINCIPAL
+	dir_x = screen->map->p_x + RAY_DIST * cos(screen->map->p_angle);
+	dir_y = screen->map->p_y + RAY_DIST * sin(screen->map->p_angle);
 	draw_line(screen, dir_x, dir_y, 0x00FF00);
 }

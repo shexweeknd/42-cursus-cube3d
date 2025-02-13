@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:23:54 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 15:54:12 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:04:03 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ int	update_frame(t_screen *screen)
 	rotate_player(screen->map);
 	move_player(screen->map);
 	put_black_screen(screen);
+	// trace_rays(screen, 3);
 	draw_map_grid(screen);
 	draw_map_player(screen);
-	trace_rays(screen);
+	trace_rays(screen, 2);
 	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
 	return (0);
 }

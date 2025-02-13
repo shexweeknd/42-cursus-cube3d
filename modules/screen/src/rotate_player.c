@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:26:35 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 12:05:45 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:04:49 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ char	_is_rotating(int cmd)
 void	rotate_player(t_map *map)
 {
 	if (_is_rotating('g') == 'r')
-		map->p_angle = (map->p_angle + ROTATION_SPEED) % 360;
+		map->p_angle = (map->p_angle + ROTATION_SPEED);
 	else if (_is_rotating('g') == 'l')
-		map->p_angle = (map->p_angle - ROTATION_SPEED) % 360;
-	if (map->p_angle <= 0)
-		map->p_angle = 360;
+		map->p_angle = (map->p_angle - ROTATION_SPEED);
+	if (map->p_angle > 2 * M_PI)
+		map->p_angle = 0;
+	else if (map->p_angle < 0)
+		map->p_angle = 2 * M_PI;
 }

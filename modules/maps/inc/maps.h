@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:17:37 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 14:05:02 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:09:20 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 # include <stdio.h>
 
 # define PLAYER_COLOR 0xFF0000
-# define FOV 60
+
+// 60 degrees in radians M_PI / 3
+# define FOV 1.0472
 
 typedef struct s_map
 {
@@ -31,15 +33,15 @@ typedef struct s_map
 	double	p_x;
 	double	p_y;
 	int		p_color;
-	int		p_angle;
+	double	p_angle;
 	int		y_len;
 	int		x_len;
 }			t_map;
 
 typedef struct s_pos
 {
-	size_t	x;
-	size_t	y;
+	double	x;
+	double	y;
 }			t_pos;
 
 // ENTRY POINT

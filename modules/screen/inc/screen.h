@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/12 13:16:09 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:06:33 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@
 # define M_PI 3.14159265358979323846
 # define RAY_DIST 4000
 # define RAY_DENSITY 1
+# define RAYS_NBR 500
 
 // MOVEMENTS
-# define ROTATION_SPEED 3
+# define ROTATION_SPEED 0.05
 
 typedef struct s_screen
 {
@@ -73,7 +74,7 @@ void		draw_map(t_screen *screen);
 
 // DRAW UTILS
 void		draw_line(t_screen *screen, double x1, double y1, int color);
-void		trace_rays(t_screen *screen);
+void		trace_rays(t_screen *screen, int dim);
 
 // KEYS UTILS
 void		config_next_coord(t_map *map, double *dir_x, double *dir_y);

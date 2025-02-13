@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:10:42 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/12 13:21:34 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:44:18 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,23 @@ void	config_next_coord(t_map *map, double *dir_x, double *dir_y)
 	direction = _player_direction(' ', 0);
 	if (direction['w'])
 	{
-		*dir_x = map->p_x + PIXEL_SIZE * cos(map->p_angle * M_PI / 180);
-		*dir_y = map->p_y + PIXEL_SIZE * sin(map->p_angle * M_PI / 180);
+		*dir_x = map->p_x + PIXEL_SIZE * cos(map->p_angle);
+		*dir_y = map->p_y + PIXEL_SIZE * sin(map->p_angle);
 	}
 	else if (direction['s'])
 	{
-		*dir_x = map->p_x - PIXEL_SIZE * cos(map->p_angle * M_PI / 180);
-		*dir_y = map->p_y - PIXEL_SIZE * sin(map->p_angle * M_PI / 180);
+		*dir_x = map->p_x - PIXEL_SIZE * cos(map->p_angle);
+		*dir_y = map->p_y - PIXEL_SIZE * sin(map->p_angle);
 	}
 	else if (direction['a'])
 	{
-		*dir_x = map->p_x + PIXEL_SIZE * sin(map->p_angle * M_PI / 180);
-		*dir_y = map->p_y - PIXEL_SIZE * cos(map->p_angle * M_PI / 180);
+		*dir_x = map->p_x + PIXEL_SIZE * sin(map->p_angle);
+		*dir_y = map->p_y - PIXEL_SIZE * cos(map->p_angle);
 	}
 	else if (direction['d'])
 	{
-		*dir_x = map->p_x - PIXEL_SIZE * sin(map->p_angle * M_PI / 180);
-		*dir_y = map->p_y + PIXEL_SIZE * cos(map->p_angle * M_PI / 180);
+		*dir_x = map->p_x - PIXEL_SIZE * sin(map->p_angle);
+		*dir_y = map->p_y + PIXEL_SIZE * cos(map->p_angle);
 	}
 }
 

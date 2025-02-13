@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:58:41 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 13:44:21 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:15:45 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 void	flood_canva(char **grid, size_t line_len, t_pos curr)
 {
-	if (curr.x <= 0 || curr.y <= 0 || curr.y >= line_len - 1
-		|| grid[curr.y][curr.x] == '\n' || grid[curr.y][curr.x] == '\0'
-		|| grid[curr.y][curr.x] == '1' || grid[curr.y][curr.x] == 'F')
+	if ((size_t)curr.x <= 0 || (size_t)curr.y <= 0 || (size_t)curr.y >= line_len
+		- 1 || grid[(size_t)curr.y][(size_t)curr.x] == '\n'
+		|| grid[(size_t)curr.y][(size_t)curr.x] == '\0'
+		|| grid[(size_t)curr.y][(size_t)curr.x] == '1'
+		|| grid[(size_t)curr.y][(size_t)curr.x] == 'F')
 		return ;
-	if (grid[curr.y][curr.x] == ' ')
+	if (grid[(size_t)curr.y][(size_t)curr.x] == ' ')
 	{
 		set_error(err_grid_format);
 		return ;
 	}
-	grid[curr.y][curr.x] = 'F';
+	grid[(size_t)curr.y][(size_t)curr.x] = 'F';
 	if (get_error())
 		return ;
 	flood_canva(grid, line_len, (t_pos){curr.x - 1, curr.y});
