@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42Antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/13 19:48:48 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/13 21:04:47 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@
 
 // MOVEMENTS
 # define ROTATION_SPEED 0.05
+
+// COLORS
+# define FLOOR_COLOR 0x202020
+# define WALL_COLOR 0x808080
+# define SKY_COLOR 0x87CEEB
 
 typedef struct s_screen
 {
@@ -101,5 +106,7 @@ void		draw_map_bloc(t_screen *screen, int i, int j, char **grid);
 void	draw_3d_ray(t_screen *screen, t_pos pos, double distance);
 void    draw_3d_rect(t_screen *screen, t_pos pos, t_dim dim);
 double 	get_wall_width(void);
+
+void 	draw_skyline(t_screen *screen);
 
 #endif

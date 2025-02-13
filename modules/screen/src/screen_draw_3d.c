@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42Antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:40:48 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/13 19:42:36 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/13 20:59:33 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void    draw_3d_rect(t_screen *screen, t_pos pos, t_dim dim)
         while (j < (pos.y + dim.h / 2))
         {
             if (j >= 0 && j < WIN_HEIGHT)
-                my_mlx_pixel_put(screen, i, j, 0x00FF00);
+                my_mlx_pixel_put(screen, i, j, WALL_COLOR);
             j++;
         }
         i++;
@@ -62,7 +62,7 @@ void    draw_3d_rect(t_screen *screen, t_pos pos, t_dim dim)
         while (j > (pos.y - dim.h / 2))
         {
             if (j >= 0 && j < WIN_HEIGHT)
-                my_mlx_pixel_put(screen, i, j, 0x00FF00);
+                my_mlx_pixel_put(screen, i, j, WALL_COLOR);
             j--;
         }
         i++;

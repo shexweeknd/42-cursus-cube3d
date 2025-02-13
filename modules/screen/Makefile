@@ -25,6 +25,7 @@ SRCS =	screen_utils.c \
 		screen_draw.c \
 		screen_draw_3d.c \
 		screen_draw_utils.c \
+		screen_skyline.c \
 		screen_bloc_utils.c \
 		screen_handlers.c \
 		screen_tracerays.c \

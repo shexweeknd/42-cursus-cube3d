@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42Antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:23:54 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/13 19:42:51 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/13 20:50:52 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	update_frame(t_screen *screen)
 	rotate_player(screen->map);
 	move_player(screen->map);
 	put_black_screen(screen);
+	draw_skyline(screen);
 	trace_rays(screen, 3);
 	draw_map_grid(screen);
 	draw_map_player(screen);
