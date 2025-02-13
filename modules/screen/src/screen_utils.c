@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
+/*   By: hramaros <hramaros@student.42Antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:23:54 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/13 15:04:03 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/13 19:42:51 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ int	update_frame(t_screen *screen)
 	rotate_player(screen->map);
 	move_player(screen->map);
 	put_black_screen(screen);
-	// trace_rays(screen, 3);
+	trace_rays(screen, 3);
 	draw_map_grid(screen);
 	draw_map_player(screen);
+	// draw_3d_rect(screen, (t_pos){0, WIN_HEIGHT / 2}, (t_dim){20, WIN_HEIGHT / 2});
 	trace_rays(screen, 2);
 	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen_tracerays.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
+/*   By: hramaros <hramaros@student.42Antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:46:15 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/13 14:43:49 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/13 19:48:14 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,44 +66,24 @@ void	draw_line(t_screen *screen, double x1, double y1, int color)
 	return ;
 }
 
-void	render_ray(t_screen *screen, t_pos pos, double ray_angle, int i)
-{
-	double	dist;
-	double	w_height;
-	double	w_top;
-	double	w_bottom;
-	int		y;
-
-	dist = sqrt((pos.x - screen->map->p_x) * (pos.x - screen->map->p_x) + (pos.y
-				- screen->map->p_y) * (pos.y - screen->map->p_y));
-	dist *= cos(ray_angle - screen->map->p_angle);
-	w_height = (PIXEL_SIZE * WIN_HEIGHT) / dist;
-	w_top = (WIN_HEIGHT / 2) - (w_height / 2);
-	w_bottom = (WIN_HEIGHT / 2) + (w_height / 2);
-	// TODO
-	y = w_top;
-	while (y < w_bottom)
-	{
-		if (y >= 0 && y < WIN_HEIGHT)
-			my_mlx_pixel_put(screen, i * (WIN_WIDTH / RAYS_NBR), y, 0x00FF00);
-		y++;
-	}
-}
-
 void	draw_line_3d(t_screen *screen, double ray_angle, int i)
 {
 	double	ray_x;
 	double	ray_y;
+	double 	distance;
 
 	ray_x = screen->map->p_x;
 	ray_y = screen->map->p_y;
 	while (!is_wall(screen->map, ray_x, ray_y) && !is_adjacent_wall(screen->map,
 			ray_x, ray_y))
 	{
-		ray_x += cos(ray_angle) * 5;
-		ray_y += sin(ray_angle) * 5;
+		ray_x += cos(ray_angle);
+		ray_y += sin(ray_angle);
 	}
-	render_ray(screen, (t_pos){ray_x, ray_y}, ray_angle, i);
+	distance = sqrt((ray_x - screen->map->p_x) * (ray_x - screen->map->p_x) + (ray_y
+				- screen->map->p_y) * (ray_y - screen->map->p_y));
+	distance *= cos(ray_angle - screen->map->p_angle);
+	draw_3d_ray(screen, (t_pos){i * get_wall_width(), WIN_HEIGHT / 2}, distance);
 	return ;
 }
 

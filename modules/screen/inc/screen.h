@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
+/*   By: hramaros <hramaros@student.42Antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/13 15:06:33 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/13 19:48:48 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <stdlib.h>
 
 // WIN_WIDTH AND WIN_HEIGHT OF THE WINDOW
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
+# define WIN_WIDTH 1080
+# define WIN_HEIGHT 600
 # define PIXEL_SIZE 1
 
 // KEYS NUMBERS
@@ -38,7 +38,7 @@
 # define M_PI 3.14159265358979323846
 # define RAY_DIST 4000
 # define RAY_DENSITY 1
-# define RAYS_NBR 500
+# define RAYS_NBR 1000
 
 // MOVEMENTS
 # define ROTATION_SPEED 0.05
@@ -54,6 +54,13 @@ typedef struct s_screen
 	int		endian;
 	t_map	*map;
 }			t_screen;
+
+typedef struct s_dim
+{
+	double w;
+	double h;
+} t_dim;
+
 
 // UTILS
 void		free_screen(t_screen *screen);
@@ -86,9 +93,13 @@ int			*_player_direction(int cmd, int value);
 char		_is_rotating(int cmd);
 int			is_wall(t_map *map, double x_dest, double y_dest);
 int			is_adjacent_wall(t_map *map, double x, double y);
-
-// test
 void		draw_bloc_square(t_screen *screen, int pos_x, int pos_y, char cmd);
 void		draw_map_bloc(t_screen *screen, int i, int j, char **grid);
+
+
+// NEW FUNCTIONS
+void	draw_3d_ray(t_screen *screen, t_pos pos, double distance);
+void    draw_3d_rect(t_screen *screen, t_pos pos, t_dim dim);
+double 	get_wall_width(void);
 
 #endif
