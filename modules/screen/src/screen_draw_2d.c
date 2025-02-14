@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:08:20 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/13 14:04:58 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:13:47 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	draw_map_bloc(t_screen *screen, int i, int j, char **grid)
 	int	pos_x;
 	int	pos_y;
 
-	pos_x = screen->map->bloc_size * j + screen->map->bloc_size / 2;
-	pos_y = screen->map->bloc_size * i + screen->map->bloc_size / 2;
+	pos_x = screen->map->s_dim.b_size * j + screen->map->s_dim.b_size / 2;
+	pos_y = screen->map->s_dim.b_size * i + screen->map->s_dim.b_size / 2;
 	if (grid[i][j] == '1')
 		draw_bloc_square(screen, pos_x, pos_y, 'b');
 	else if (grid[i][j] == '0')
@@ -33,8 +33,8 @@ void	draw_map_player(t_screen *screen)
 	int	pos_x;
 	int	pos_y;
 
-	pos_x = screen->map->p_x;
-	pos_y = screen->map->p_y;
+	pos_x = screen->map->s_dim.p_x;
+	pos_y = screen->map->s_dim.p_y;
 	draw_bloc_square(screen, pos_x, pos_y, 'p');
 	return ;
 }

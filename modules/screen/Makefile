@@ -22,8 +22,9 @@ LIBERRORS_DIR = ../errors/inc/
 
 #FILES
 SRCS =	screen_utils.c \
-		screen_draw.c \
-		screen_draw_3d.c \
+		screen_draw_2d.c \
+		screen_draw_3d_ray.c \
+		screen_draw_3d_rect.c \
 		screen_draw_utils.c \
 		screen_skyline.c \
 		screen_bloc_utils.c \

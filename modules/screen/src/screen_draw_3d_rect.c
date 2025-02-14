@@ -1,57 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   screen_skyline.c                                   :+:      :+:    :+:   */
+/*   screen_draw_3d_rect.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 20:34:45 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/14 14:32:26 by hramaros         ###   ########.fr       */
+/*   Created: 2025/02/14 14:44:19 by hramaros          #+#    #+#             */
+/*   Updated: 2025/02/14 14:44:40 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "screen.h"
 
-void	draw_sky(t_screen *screen)
+void	draw_3d_rect_bottom(t_screen *screen, t_pos pos, t_dim dim)
 {
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < WIN_WIDTH)
+	i = pos.x;
+	while (i < (pos.x + dim.w))
 	{
-		j = 0;
-		while (j < WIN_HEIGHT / 2)
+		j = pos.y;
+		while (j < (pos.y + dim.h / 2))
 		{
 			if (j >= 0 && j < WIN_HEIGHT)
-				my_mlx_pixel_put(screen, i, j, SKY_COLOR);
+				my_mlx_pixel_put(screen, i, j, WALL_COLOR);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	draw_floor(t_screen *screen)
+void	draw_3d_rect_top(t_screen *screen, t_pos pos, t_dim dim)
 {
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < WIN_WIDTH)
+	i = pos.x;
+	while (i < (pos.x + dim.w))
 	{
-		j = WIN_HEIGHT / 2;
-		while (j < WIN_HEIGHT)
+		j = pos.y;
+		while (j > (pos.y - dim.h / 2))
 		{
 			if (j >= 0 && j < WIN_HEIGHT)
-				my_mlx_pixel_put(screen, i, j, FLOOR_COLOR);
-			j++;
+				my_mlx_pixel_put(screen, i, j, WALL_COLOR);
+			j--;
 		}
 		i++;
 	}
 }
 
-void	draw_skyline(t_screen *screen)
+void	draw_3d_rect(t_screen *screen, t_pos pos, t_dim dim)
 {
-	draw_floor(screen);
-	draw_sky(screen);
+	draw_3d_rect_bottom(screen, pos, dim);
+	draw_3d_rect_top(screen, pos, dim);
 }

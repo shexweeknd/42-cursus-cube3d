@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:56:17 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/11 15:56:58 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:14:48 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void	draw_b_r(t_screen *screen, int pos_x, int pos_y, int color)
 	int	bloc_size;
 
 	if (color == screen->map->p_color)
-		bloc_size = screen->map->player_size;
+		bloc_size = screen->map->s_dim.p_size;
 	else
-		bloc_size = screen->map->bloc_size;
+		bloc_size = screen->map->s_dim.b_size;
 	i = 0;
 	while (i < (bloc_size / 2))
 	{
@@ -39,9 +39,9 @@ static void	draw_t_l(t_screen *screen, int pos_x, int pos_y, int color)
 	int	bloc_size;
 
 	if (color == screen->map->p_color)
-		bloc_size = screen->map->player_size;
+		bloc_size = screen->map->s_dim.p_size;
 	else
-		bloc_size = screen->map->bloc_size;
+		bloc_size = screen->map->s_dim.b_size;
 	i = 0;
 	while (i > -(bloc_size / 2))
 	{
@@ -59,9 +59,9 @@ static void	draw_b_l(t_screen *screen, int pos_x, int pos_y, int color)
 	int	bloc_size;
 
 	if (color == screen->map->p_color)
-		bloc_size = screen->map->player_size;
+		bloc_size = screen->map->s_dim.p_size;
 	else
-		bloc_size = screen->map->bloc_size;
+		bloc_size = screen->map->s_dim.b_size;
 	i = 0;
 	while (i > -(bloc_size / 2))
 	{
@@ -79,9 +79,9 @@ static void	draw_t_r(t_screen *screen, int pos_x, int pos_y, int color)
 	int	bloc_size;
 
 	if (color == screen->map->p_color)
-		bloc_size = screen->map->player_size;
+		bloc_size = screen->map->s_dim.p_size;
 	else
-		bloc_size = screen->map->bloc_size;
+		bloc_size = screen->map->s_dim.b_size;
 	i = 0;
 	while (i < (bloc_size / 2))
 	{

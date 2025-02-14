@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hramaros <hramaros@student.42Antananari    +#+  +:+       +#+        */
+/*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/13 21:21:25 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:45:57 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 // WIN_WIDTH AND WIN_HEIGHT OF THE WINDOW
 # define WIN_WIDTH 1080
 # define WIN_HEIGHT 600
-# define PIXEL_SIZE 1
+# define PIXEL_SIZE 2
 
 // KEYS NUMBERS
 # define KEY_PRESS 2
@@ -32,7 +32,7 @@
 # define KEY_EXIT 17
 
 // SIZE
-# define SQUARE_SIZE 1
+# define BLOC_SIZE 128
 
 // constant
 # define M_PI 3.14159265358979323846
@@ -62,10 +62,9 @@ typedef struct s_screen
 
 typedef struct s_dim
 {
-	double w;
-	double h;
-} t_dim;
-
+	double	w;
+	double	h;
+}			t_dim;
 
 // UTILS
 void		free_screen(t_screen *screen);
@@ -89,24 +88,23 @@ void		draw_line(t_screen *screen, double ray_angle, int color);
 void		trace_rays(t_screen *screen, int dim);
 
 // KEYS UTILS
-void		config_next_coord(t_map *map, double *dir_x, double *dir_y);
-int			is_valid_move(t_map *map);
-void		move_player(t_map *map);
+void		config_next_coord(t_map *map, double *dir_x, double *dir_y,
+				int dim);
+void		move_player(t_map *map, int dim);
 void		rotate_player(t_map *map);
 int			update_frame(t_screen *screen);
 int			*_player_direction(int cmd, int value);
 char		_is_rotating(int cmd);
-int			is_wall(t_map *map, double x_dest, double y_dest);
-int			is_adjacent_wall(t_map *map, double x, double y);
+int			is_wall(t_map *map, double x_dest, double y_dest, int dim);
+int			is_adjacent_wall(t_map *map, double x, double y, int dim);
 void		draw_bloc_square(t_screen *screen, int pos_x, int pos_y, char cmd);
 void		draw_map_bloc(t_screen *screen, int i, int j, char **grid);
 
-
 // NEW FUNCTIONS
-void	draw_3d_ray(t_screen *screen, t_pos pos, double distance);
-void    draw_3d_rect(t_screen *screen, t_pos pos, t_dim dim);
-double 	get_wall_width(void);
+void		draw_3d_ray(t_screen *screen, t_pos pos, double distance);
+void		draw_3d_rect(t_screen *screen, t_pos pos, t_dim dim);
+double		get_wall_width(void);
 
-void 	draw_skyline(t_screen *screen);
+void		draw_skyline(t_screen *screen);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hramaros <hramaros@student.42Antananari    +#+  +:+       +#+        */
+/*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:23:54 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/13 20:50:52 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:22:41 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,21 @@ void	free_screen(t_screen *screen)
 	return ;
 }
 
-int	is_valid_move(t_map *map)
+void	render_2d_map(t_screen *screen)
 {
-	double	dir_x;
-	double	dir_y;
-
-	dir_x = 0;
-	dir_y = 0;
-	config_next_coord(map, &dir_x, &dir_y);
-	if (dir_x <= map->bloc_size || dir_y <= map->bloc_size
-		|| dir_x >= map->bloc_size * (map->x_len - 1) || dir_y >= map->bloc_size
-		* (map->y_len - 1))
-		return (0);
-	return (1);
+	draw_map_grid(screen);
+	draw_map_player(screen);
+	trace_rays(screen, 2);
 }
 
 int	update_frame(t_screen *screen)
 {
 	rotate_player(screen->map);
-	move_player(screen->map);
-	put_black_screen(screen);
+	move_player(screen->map, 3);
+	move_player(screen->map, 2);
 	draw_skyline(screen);
 	trace_rays(screen, 3);
-	draw_map_grid(screen);
-	draw_map_player(screen);
-	// draw_3d_rect(screen, (t_pos){0, WIN_HEIGHT / 2}, (t_dim){20, WIN_HEIGHT / 2});
-	trace_rays(screen, 2);
+	render_2d_map(screen);
 	mlx_put_image_to_window(screen->mlx, screen->mlx_win, screen->img, 0, 0);
 	return (0);
 }
