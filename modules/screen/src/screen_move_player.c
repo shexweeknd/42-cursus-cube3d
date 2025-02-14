@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_player.c                                      :+:      :+:    :+:   */
+/*   screen_move_player.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:10:42 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/14 14:40:26 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/14 15:08:56 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,23 @@ void	config_next_coord(t_map *map, double *dir_x, double *dir_y, int dim)
 	direction = (set_coord(map, &p_x, &p_y, dim), _player_direction(' ', 0));
 	if (direction['w'])
 	{
-		*dir_x = p_x + PIXEL_SIZE * cos(map->p_angle);
-		*dir_y = p_y + PIXEL_SIZE * sin(map->p_angle);
+		*dir_x = p_x + STEP_SIZE * cos(map->p_angle);
+		*dir_y = p_y + STEP_SIZE * sin(map->p_angle);
 	}
 	else if (direction['s'])
 	{
-		*dir_x = p_x - PIXEL_SIZE * cos(map->p_angle);
-		*dir_y = p_y - PIXEL_SIZE * sin(map->p_angle);
+		*dir_x = p_x - STEP_SIZE * cos(map->p_angle);
+		*dir_y = p_y - STEP_SIZE * sin(map->p_angle);
 	}
 	else if (direction['a'])
 	{
-		*dir_x = p_x + PIXEL_SIZE * sin(map->p_angle);
-		*dir_y = p_y - PIXEL_SIZE * cos(map->p_angle);
+		*dir_x = p_x + STEP_SIZE * sin(map->p_angle);
+		*dir_y = p_y - STEP_SIZE * cos(map->p_angle);
 	}
 	else if (direction['d'])
 	{
-		*dir_x = p_x - PIXEL_SIZE * sin(map->p_angle);
-		*dir_y = p_y + PIXEL_SIZE * cos(map->p_angle);
+		*dir_x = p_x - STEP_SIZE * sin(map->p_angle);
+		*dir_y = p_y + STEP_SIZE * cos(map->p_angle);
 	}
 }
 
@@ -101,8 +101,8 @@ void	move_player(t_map *map, int dim)
 		}
 		else if (dim == 2)
 		{
-			map->s_dim.p_x = dir_x;
-			map->s_dim.p_y = dir_y;
+			map->s_dim.p_x = map->r_dim.p_x * get_scaling_factor(map);
+			map->s_dim.p_y = map->r_dim.p_y * get_scaling_factor(map);
 		}
 	}
 }

@@ -31,8 +31,9 @@ SRCS =	screen_utils.c \
 		screen_handlers.c \
 		screen_tracerays.c \
 		screen_config.c \
-		move_player.c \
-		rotate_player.c \
+		screen_move_player.c \
+		screen_player_utils.c \
+		screen_rotate_player.c \
 
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 

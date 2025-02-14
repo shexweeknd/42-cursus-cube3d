@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 07:06:13 by hramaros          #+#    #+#             */
-/*   Updated: 2025/02/14 14:45:57 by hramaros         ###   ########.fr       */
+/*   Updated: 2025/02/14 15:08:56 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 // WIN_WIDTH AND WIN_HEIGHT OF THE WINDOW
 # define WIN_WIDTH 1080
 # define WIN_HEIGHT 600
-# define PIXEL_SIZE 2
+# define STEP_SIZE 10
 
 // KEYS NUMBERS
 # define KEY_PRESS 2
@@ -70,6 +70,7 @@ typedef struct s_dim
 void		free_screen(t_screen *screen);
 void		cube_hook(t_screen *screen);
 int			data_init(t_screen *screen, char *map_file);
+double		get_scaling_factor(t_map *map);
 
 // KEYS
 int			handle_exit(t_screen *screen);
@@ -100,11 +101,10 @@ int			is_adjacent_wall(t_map *map, double x, double y, int dim);
 void		draw_bloc_square(t_screen *screen, int pos_x, int pos_y, char cmd);
 void		draw_map_bloc(t_screen *screen, int i, int j, char **grid);
 
-// NEW FUNCTIONS
+// 3D UTILS
 void		draw_3d_ray(t_screen *screen, t_pos pos, double distance);
 void		draw_3d_rect(t_screen *screen, t_pos pos, t_dim dim);
 double		get_wall_width(void);
-
 void		draw_skyline(t_screen *screen);
 
 #endif
